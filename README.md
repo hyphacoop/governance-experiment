@@ -1,4 +1,5 @@
-# governance-experiment
+# Governance experiment
+![image](https://github.com/hyphacoop/governance-experiment/assets/631268/468b3e0b-ab1a-4a61-a631-01bd008d930d)
 
 This repository hosts the collaborative governance experiment project for Hypha. Our goal is to create a visual timeline of the co-op’s history through a collaborative process using DAO tooling. This experiment aims to:
 
