@@ -115,6 +115,35 @@ This project is a creative exploration of generative decision processes. Through
 - **Historical Record:** Mint important milestones as NFTs to create a digital archive.
 - **Collaborative Decision-Making:** Test and refine generative decision processes within the cooperative.
 
+### Tools Used for the Experiment
+
+- Matrix chat
+- Earthstar voting tool
+- Solidity smart contract
+- Python scripts
+
+These tools have been chosen for their simplicity. Some of these will be used only by myself, such as the Python script for generating visuals and parsing meeting notes. Other tools will be used by all participants to discuss, argue, propose and vote on what makes the cut as official Hypha lore.
+
+### Matrix
+
+Matrix will be central to these experiments. I will create a new room to host this project's discussions and deliberations. We will use chat to describe the project, gather suggestions, and deliberate on what elements need to be canonized. For quick votes, we will use emoji reactions in Matrix. For votes that are more controversial, we will use the Earthstar voting tool I built. Once items and their metadata (image and description) are collectively approved, they will be minted on-chain as NFTs.
+
+### Earthstar-based Voting Tool
+
+For more sensitive votes, we can use the Earthstar-based voting tool I built, which allows for anonymous voting. This tool is ideal for scenarios where voter privacy is essential, ensuring that votes remain confidential while still allowing for accurate and fair decision-making.
+
+### On-chain
+
+For this initial experiment, I suggest 2 options. Either we mint the tokens on testnet or on Polygon. Testnet will be free and might reduce some financial pressure. Alternatively, if we choose to go with Polygon, we can consider the option of minting these tokens as collectibles for the broader public. Orb seems like an interesting option where these items could exist for the public to collect (Orb being a web3 social platform part of the Lens protocol).
+
+In the end, these options are not mutually exclusive. We could run the governance experiment on testnet and also mint them as collectible NFTs on another chain.
+
+In summary, these NFTs could exist both on Ethereum testnet or on a cheap EVM chain such as Polygon. I decided to keep votes and other decisions off-chain for this early phase. Instead of having the entire process live on the blockchain, I opted to only bring its final output on-chain. This means that the prior steps are designed as a mechanism for deciding what we want to bring on-chain.
+
+I imagine this will simplify the process for everyone and will allow us to focus on the decision-making process itself instead of technical details such as tokens, chains, and wallet interactions.
+
+### Conclusion
+
 ### Conclusion
 
 Through this process, we aim to learn how to better deliberate, make proposals, and make decisions. The result will be an enhanced decision-making process and also, some content and images about the cooperative's history — essentially, creating the co-op lore. This low-stakes exercise will help us test out generative decision processes and provide ideas on how to better work together. This process will also lead to what we reveal and to what extent. Some of these insights might be important but too sensitive to be shared in public. In such cases, we could decide to encrypt or hash the data to conceal or obfuscate certain details. This experiment also offers an opportunity to preserve and celebrate our cooperative's history through the minting of digital artifacts.
