@@ -6,10 +6,10 @@
 </script>
 
 <main>
-  <h1 class="text-left">
+  <h1 class="text-left mb-6 mt-2 text-center md:text-left">
     Governance Dashboard
   </h1>
-  <div class="flex flex-col lg:flex-col">
+  <div class="flex flex-col lg:flex-row lg:space-x-8">
     <ParticipationGraph />
     <VotesBarGraph />
   </div>
