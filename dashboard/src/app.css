@@ -45,7 +45,7 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.2em;
   line-height: 1.1;
 }
 
@@ -83,6 +83,19 @@ div.component {
   color: white;
   background-color: #343434;
   border-radius: 5rem;
-  padding: 2.5rem 5rem;
+  padding: 1.5rem 3rem;
   margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+  #app {
+    padding: 0.5rem;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  div.component {
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+  }
 }
