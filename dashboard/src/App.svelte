@@ -6,7 +6,7 @@
 </script>
 
 <main>
-  <h1 class="text-left mb-6 mt-2 text-center md:text-left">
+  <h1 class="text-left mb-6 mt-2 text-center md:text-left mb-12 md:mb-6 lg:mb-2">
     Governance Dashboard
   </h1>
   <div class="flex flex-col lg:flex-row lg:space-x-8">
