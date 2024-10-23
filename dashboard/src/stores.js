@@ -1,4 +1,28 @@
 import { writable } from 'svelte/store';
+import Papa from 'papaparse';
+
+export const decisionLogData = writable([]);
+
+export const csvLoaded = writable(false);
+
+export const loadDecisionLog = async (csvFile) => {
+  return new Promise((resolve, reject) => {
+    Papa.parse(csvFile, {
+      header: true,
+      complete: (result) => {
+        decisionLogData.set(result.data);
+        csvLoaded.set(true);
+        resolve(result.data);
+      },
+      error: (error) => reject(error)
+    });
+  });
+};
+
+export const clearDecisionLog = () => {
+  decisionLogData.set([]);  
+  csvLoaded.set(false);  
+};
 
 export const participationData = writable({
   labels: ["A", "B", "C", "D", "E"],
