@@ -83,8 +83,8 @@ div.component {
   color: white;
   background-color: #343434;
   border-radius: 5rem;
-  padding: 1.5rem 3rem;
-  margin-bottom: 1rem;
+  padding: 2.2rem 3.3rem;
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 640px) {
