@@ -24,9 +24,9 @@
     <tbody>
       {#each proposals as proposal}
         <tr class="border-b border-gray-300">
-          <td class="px-4 py-2">{proposal.id}</td>
-          <td class="px-4 py-2">{proposal.title}</td>
-          <td class="px-4 py-2">{proposal.status}</td>
+          <td class="px-4 py-2 text-left">{proposal.id}</td>
+          <td class="px-4 py-2 text-left">{proposal.title}</td>
+          <td class="px-4 py-2 text-left">{proposal.status}</td>
         </tr>
       {/each}
     </tbody>
