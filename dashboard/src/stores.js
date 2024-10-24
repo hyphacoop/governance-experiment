@@ -7,15 +7,31 @@ export const csvLoaded = writable(false);
 
 export const loadDecisionLog = async (csvFile) => {
   return new Promise((resolve, reject) => {
-    Papa.parse(csvFile, {
-      header: true,
-      complete: (result) => {
-        decisionLogData.set(result.data);
-        csvLoaded.set(true);
-        resolve(result.data);
-      },
-      error: (error) => reject(error)
-    });
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      // Get the file content as a string
+      const fileContent = event.target.result;
+
+      // Split the content by new lines and remove the first 3 lines
+      const validContent = fileContent.split('\n').slice(3).join('\n');
+
+      // Now pass the remaining content to Papa.parse
+      Papa.parse(validContent, {
+        header: true,
+        complete: (result) => {
+          decisionLogData.set(result.data);
+          csvLoaded.set(true);
+          resolve(result.data);
+        },
+        error: (error) => reject(error)
+      });
+    };
+
+    reader.onerror = (error) => reject(error);
+
+    // Read the file content as text
+    reader.readAsText(csvFile);
   });
 };
 
