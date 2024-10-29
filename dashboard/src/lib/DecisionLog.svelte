@@ -1,5 +1,5 @@
 <script>
-    import { decisionLogData, clearDecisionLog, csvLoaded } from '../stores';
+    import { decisionLogData, clearDecisionLog, decisionLogLoaded } from '../stores';
     let decisions = [];
     let isCsvLoaded;
 
@@ -9,7 +9,7 @@
     });
 
     // Subscribe to csvLoaded to track if the CSV is loaded
-    $: csvLoaded.subscribe(value => {
+    $: decisionLogLoaded.subscribe(value => {
         isCsvLoaded = value;
     });
 
@@ -23,7 +23,7 @@
     <h2>Decision Log</h2>
     <div class="flex flex-col flex-wrap items-start	content-start">
     {#each decisions as decision}
-      <details class="my-2 p-4 border border-gray-300 rounded-lg max-w-2xl">
+      <details class="my-2 p-2 border border-gray-300 rounded-lg max-w-2xl">
         <summary class="font-semibold text-md text-left">{decision['Short title']}</summary>
   
         <div class="mt-2">
