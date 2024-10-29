@@ -47,7 +47,7 @@
   {#if !isVoteDataLoaded}
     <div class="my-4 flex flex-row border-2 border-purple rounded p-2">
       <label>
-        <p class="text-left">Upload Vote Data CSV</p>
+        <p class="text-left">Load Vote Data CSV</p>
         <input type="file" accept=".csv" on:change={handleVoteDataUpload} />
       </label>
     </div>
