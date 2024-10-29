@@ -1,11 +1,14 @@
 <script>
-  import { proposalsData } from "../stores";
+  import { proposalsData, clearVoteData } from "../stores";
   let proposals;
 
   // Subscribe to the store data
   $: proposalsData.subscribe(data => {
     proposals = data;
   });
+
+  // Handler to clear vote data
+  const handleClearVoteData = () => clearVoteData();
 </script>
 
 <div class="flex flex-col items-start component">
@@ -22,7 +25,7 @@
     </thead>
     <tbody>
       {#each proposals as proposal}
-        <tr class="border-b border-gray-300">
+        <tr class="border-b border-purple">
           <td class="px-4 py-2 text-left">{proposal.proposal}</td>
           <td class="px-4 py-2 text-left">{proposal.title}</td>
           <td class="px-4 py-2 text-left">{proposal.count}</td>
@@ -30,6 +33,9 @@
       {/each}
     </tbody>
   </table>
+  <button on:click={handleClearVoteData} class="text-white px-4 py-2 rounded mt-4">
+    Clear data
+  </button>
 </div>
 
 <style>
