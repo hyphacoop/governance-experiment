@@ -31,11 +31,11 @@
           scales: {
             x: {
               grid: {
-                color: 'white',        // White grid lines for X-axis
+                color: 'black',        // black grid lines for X-axis
                 lineWidth: 1,
               },
               ticks: {
-                color: 'white',        // White tick labels for X-axis
+                color: 'black',        // black tick labels for X-axis
                 font: {
                   family: 'Work Sans', // Apply Work Sans to X-axis tick labels
                   size: 12,
@@ -44,7 +44,7 @@
               title: {
                 display: true,
                 text: '',    // X-axis label
-                color: 'white',
+                color: 'black',
                 font: {
                   family: 'Work Sans',
                   size: 14,
@@ -56,11 +56,11 @@
               min: 0, // Minimum value for Y-axis
               max: 12,
               grid: {
-                color: 'white',        // White grid lines for Y-axis
+                color: 'black',        // black grid lines for Y-axis
                 lineWidth: 0.1,
               },
               ticks: {
-                color: 'white',        // White tick labels for Y-axis
+                color: 'black',        // black tick labels for Y-axis
                 font: {
                   family: 'Work Sans', // Apply Work Sans to Y-axis tick labels
                   size: 12,
@@ -69,7 +69,7 @@
               title: {
                 display: true,
                 text: '', // Y-axis label
-                color: 'white',
+                color: 'black',
                 font: {
                   family: 'Work Sans',
                   size: 14,
@@ -82,7 +82,7 @@
             legend: {
               display: false,
               labels: {
-                color: 'white',       // White legend text
+                color: 'black',       // black legend text
                 font: {
                   family: 'Work Sans', // Apply Work Sans to legend
                   size: 14,
