@@ -28,6 +28,15 @@
 <main>
   <h1>Governance Dashboard</h1>
 
+  
+    <!-- Load and display Decision ;;og -->
+    {#if !decisionLogLoadState}
+    <LoadDecisions />
+  {:else}
+    <DecisionLog />
+  {/if}
+
+
   <!-- Display Vote Data Graphs and Table if vote data is loaded -->
   {#if isVoteDataLoaded}
     <div class="flex flex-col lg:flex-row lg:space-x-7">
@@ -35,28 +44,17 @@
       <TotalVoters />
     </div>
     <ProposalsTable />
-    <button on:click={handleClearVoteData} class="bg-red-500 text-white px-4 py-2 rounded my-4">
-      Clear Vote Data
-    </button>
-  {/if}
-
-  <!-- Upload button for vote data CSV file (shown if not loaded) -->
-  {#if !isVoteDataLoaded}
-    <div class="my-4 flex flex-row border-2 border-purple rounded p-2">
+  {:else}
+    <div class="my-4 flex flex-col border-2 border-purple rounded p-2 items-baseline">
+      <h2 class="text-left">Vote Results</h2>
+      <br>
       <label>
-        <p class="text-left">Load Vote Data CSV</p>
+        <p class="text-left purple">Load CSV</p>
         <input type="file" accept=".csv" on:change={handleVoteDataUpload} />
       </label>
     </div>
   {/if}
 
-
-    <!-- Load and display Decision Log as before -->
-    {#if !decisionLogLoadState}
-    <LoadDecisions />
-  {:else}
-    <DecisionLog />
-  {/if}
 
 </main>
 
