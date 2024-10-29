@@ -1,6 +1,5 @@
 <script>
   import { proposalsData } from "../stores";
-
   let proposals;
 
   // Subscribe to the store data
@@ -13,26 +12,25 @@
   <h2>
     Proposals
   </h2>
-  <table class="w-full border-spacing-0 rounded-tl-lg my-4 table-auto">
+  <table class="border-spacing-0 rounded-tl-lg my-4 table-auto">
     <thead>
       <tr>
-        <th class="px-4 py-2 text-left rounded-tl-lg rounded-bl-lg thead">ID</th>
-        <th class="px-4 py-2 text-left thead">Title</th>
-        <th class="px-4 py-2 text-left rounded-tr-lg rounded-br-lg thead">Status</th>
+        <th class="px-4 py-2 text-left rounded-tl-lg rounded-bl-lg thead w-1/6">Label</th>
+        <th class="px-4 py-2 text-left thead w-2/6">Proposal</th>
+        <th class="px-4 py-2 text-left thead w-1/6">Votes</th>
       </tr>
     </thead>
     <tbody>
       {#each proposals as proposal}
         <tr class="border-b border-gray-300">
-          <td class="px-4 py-2 text-left">{proposal.id}</td>
+          <td class="px-4 py-2 text-left">{proposal.proposal}</td>
           <td class="px-4 py-2 text-left">{proposal.title}</td>
-          <td class="px-4 py-2 text-left">{proposal.status}</td>
+          <td class="px-4 py-2 text-left">{proposal.count}</td>
         </tr>
       {/each}
     </tbody>
   </table>
 </div>
-
 
 <style>
   .thead {
@@ -40,6 +38,6 @@
     color: #000;
   }
   thead tr th {
-    font-weight: bolder;
+    font-weight: bold;
   }
 </style>
