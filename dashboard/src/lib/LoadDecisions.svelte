@@ -9,7 +9,8 @@
     };
   </script>
   
-  <div class="file-upload">
-    <h2>Upload CSV for Decision Log</h2>
+  <div class="file-upload my-4 flex flex-col border-2 border-purple rounded p-2">
+    <h2 class="text-left">Upload CSV for Decision Log</h2>
+    <br>
     <input type="file" accept=".csv" on:change={handleFileUpload} />
   </div>
