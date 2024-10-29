@@ -1,47 +1,61 @@
-# Svelte + Vite
+# Governance Dashboard
 
-This template should help get you started developing with Svelte in Vite.
+The goal of this frontend interface is to provide a dashboard that brings together different governance processes.
 
-## Recommended IDE Setup
+## Table of Contents
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
 
-## Need an official Svelte framework?
+## Project Overview
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+The Governance Dashboard is a Svelte-based application designed to facilitate collaborative decision-making and visualize the results. The project aims to:
 
-## Technical considerations
+- Display our decision log.
+- Provide insights into deliberation and voting workflows.
+- Test the viability of different tools in a small-scale setting.
+- Develop and document a series of governance workflows.
+- Contribute to the lore creation of our co-op by telling the story of what and why we are.
 
-**Why use this over SvelteKit?**
+## Features
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+- **Proposals Table:** Display proposals.
+- **Vote Results:** Upload and visualize vote results from CSV files.
+- **Decision Log:** Load and display decision logs.
+- **Graphs:** Visualize data using different graphs.
 
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+## Installation
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+To get started with the project, follow these steps:
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+1. Clone the repository:
+    ```
+    git clone https://github.com/hyphacoop/governance-experiment.git
+    cd governance-experiment/dashboard
+    ```
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
+2. Install dependencies:
+    ```
+    npm install
+    ```
 
-**Why include `.vscode/extensions.json`?**
+3. Start the development server:
+    ```
+    npm run dev
+    ```
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+## Usage
 
-**Why enable `checkJs` in the JS template?**
+### Loading Vote Data
 
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
+1. Navigate to the "Voting interface".
+2. Once you have voted, you can obtain the results by clicking `Export to CSV`
+3. On the dashboard, Find the "Load CSV" option and load your vote data file.
 
-**Why is HMR not preserving my local component state?**
+### Loading Decision Log
 
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
+1. Find the 'Decision Log' Sheet and download it as CSV
+2. On the dashboard, navigate to the "Decision Log" section.
+3. Click on "Load CSV" and load the decision log file.
