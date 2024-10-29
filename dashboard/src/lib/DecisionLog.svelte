@@ -23,7 +23,7 @@
     <h2>Decision Log</h2>
     <div class="flex flex-col flex-wrap items-start	content-start">
     {#each decisions as decision}
-      <details class="my-2 p-2 border border-gray-300 rounded-lg max-w-2xl">
+      <details class="my-2 p-2 border border-purple rounded-lg max-w-2xl">
         <summary class="font-semibold text-md text-left">{decision['Short title']}</summary>
   
         <div class="mt-2">
@@ -64,8 +64,8 @@
     {/each}
     </div>
     {#if isCsvLoaded}
-    <button on:click={handleClearData} class="bg-red-500 text-white px-4 py-2 rounded my-8">
-      Clear Data
+    <button on:click={handleClearData} class="text-white px-4 py-2 rounded mt-4">
+      Clear data
     </button>
   {/if}
   </div>
@@ -85,7 +85,7 @@
     }
   
     td {
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #000;
     }
 
     tbody tr:last-child td {
