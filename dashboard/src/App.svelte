@@ -23,9 +23,6 @@
     const file = event.target.files[0];
     if (file) await loadVoteData(file);
   };
-
-  // Handler to clear vote data
-  const handleClearVoteData = () => clearVoteData();
 </script>
 
 <main>
