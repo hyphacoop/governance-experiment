@@ -7,7 +7,8 @@
   import ProposalsTable from './lib/ProposalsTable.svelte';
   import LoadDecisions from './lib/LoadDecisions.svelte';
   import DecisionLog from './lib/DecisionLog.svelte';
-  import { decisionLogLoaded, loadVoteData, clearVoteData, voteDataLoaded } from './stores';
+
+  import { isDecisionLogLoaded, decisionLogData, loadVoteData, clearVoteData, voteDataLoaded } from './stores';
 
   // Track loaded state for vote data
   let isVoteDataLoaded;
@@ -16,7 +17,7 @@
 
   // Track loaded state for decision log
   let decisionLogLoadState;
-  $: decisionLogLoaded.subscribe(value => decisionLogLoadState = value);
+  $: isDecisionLogLoaded.subscribe(value => decisionLogLoadState = value);
 
   // Handler for vote data file upload
   const handleVoteDataUpload = async (event) => {
@@ -28,23 +29,20 @@
 <main>
   <h1>Governance Dashboard</h1>
 
-  
-    <!-- Load and display Decision ;;og -->
-    {#if !decisionLogLoadState}
-    <LoadDecisions />
-  {:else}
-    <DecisionLog />
-  {/if}
-
-
   <!-- Display Vote Data Graphs and Table if vote data is loaded -->
-  {#if isVoteDataLoaded}
-    <div class="flex flex-col lg:flex-row lg:space-x-7">
+  {#if decisionLogLoadState}
+    <DecisionLog />
+   
+  {:else}
+
+    <LoadDecisions />
+  <!--
+
+     <div class="flex flex-col lg:flex-row lg:space-x-7">
       <BarGraph />
       <TotalVoters />
     </div>
     <ProposalsTable />
-  {:else}
     <div class="my-4 flex flex-col border-2 border-purple rounded p-2 items-baseline">
       <h2 class="text-left">Vote Results</h2>
       <br>
@@ -53,6 +51,7 @@
         <input type="file" accept=".csv" on:change={handleVoteDataUpload} />
       </label>
     </div>
+    -->
   {/if}
 
 
