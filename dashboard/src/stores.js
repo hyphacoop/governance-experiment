@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import Papa from 'papaparse';
 
 export const decisionLogData = writable([]);
-export const decisionLogLoaded = writable(false);
+export const isDecisionLogLoaded = writable(false);
 
 // State for the vote-related data (lineGraph, barChart, and proposals)
 export const voteDataLoaded = writable(false);
@@ -41,7 +41,7 @@ export const loadDecisionLog = async (csvFile) => {
         header: true,
         complete: (result) => {
           decisionLogData.set(result.data);
-          decisionLogLoaded.set(true);
+          isDecisionLogLoaded.set(true);
           resolve(result.data);
         },
         error: (error) => reject(error)
@@ -54,10 +54,67 @@ export const loadDecisionLog = async (csvFile) => {
     reader.readAsText(csvFile);
   });
 };
+export const loadDecisionLogFromApi = (apiResponse) => {
+  return new Promise((resolve, reject) => {
+    try {
+      if (!apiResponse || !apiResponse.values || apiResponse.values.length < 4) {
+        throw new Error('Invalid or insufficient data in API response.');
+      }
+
+      // Extract headers from the 4th row (index 3)
+      const headers = apiResponse.values[3];
+      if (!headers || headers.length === 0) {
+        throw new Error('No headers found in the specified row.');
+      }
+
+      // Normalize headers (trim, lowercase, replace spaces and special characters with underscores)
+      const normalizedHeaders = headers.map((header, index) => {
+        if (!header || typeof header !== 'string') {
+          console.warn(`Header at index ${index} is invalid:`, header);
+          return `column_${index}`; // Default to generic column name
+        }
+        return header
+          .trim()
+          .toLowerCase()
+          .replace(/\s+/g, '_') // Replace spaces with underscores
+          .replace(/[^a-z0-9_]/g, ''); // Remove special characters
+      });
+
+      // Extract data rows starting from the 5th row (index 4)
+      const dataRows = apiResponse.values.slice(4);
+
+      // Map rows to objects using headers, filtering out empty rows
+      const parsedData = dataRows
+        .filter((row) => 
+          row && 
+          row.some((cell) => cell && cell.trim() !== '') && // Exclude rows with all empty cells
+          row[normalizedHeaders.indexOf('date')] && // Ensure `date` is not empty
+          row[normalizedHeaders.indexOf('short_title')] // Ensure `short_title` is not empty
+        )
+        .map((row) =>
+          normalizedHeaders.reduce((acc, key, index) => {
+            acc[key] = row[index] || ''; // Assign value or empty string
+            return acc;
+          }, {})
+        );
+
+      // Update the store
+      decisionLogData.set(parsedData);
+      isDecisionLogLoaded.set(true);
+
+      console.log('Decision log updated:', parsedData);
+      resolve(parsedData);
+    } catch (error) {
+      console.error('Error loading decision log from API response:', error);
+      reject(error);
+    }
+  });
+};
+
 
 export const clearDecisionLog = () => {
   decisionLogData.set([]);  
-  decisionLogLoaded.set(false);  
+  isDecisionLogLoaded.set(false);  
 };
 export const loadVoteData = async (csvFile) => {
   return new Promise((resolve, reject) => {
