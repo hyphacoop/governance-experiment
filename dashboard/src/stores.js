@@ -1,3 +1,6 @@
+import * as Earthstar from "earthstar";
+import { ReplicaDriverWeb } from "earthstar/browser";
+
 import { writable } from 'svelte/store';
 import Papa from 'papaparse';
 
@@ -98,12 +101,20 @@ export const loadDecisionLogFromApi = (apiResponse) => {
           }, {})
         );
 
+      
+      // Retrieve the current data from the store
+      let currentData = [];
+      decisionLogData.subscribe(data => {
+        currentData = data;
+      })();
+
+      // Append the new data to the existing data
+      const combinedData = [...currentData, ...parsedData];
       // Update the store
-      decisionLogData.set(parsedData);
+      decisionLogData.set(combinedData);
       isDecisionLogLoaded.set(true);
 
-      console.log('Decision log updated:', parsedData);
-      resolve(parsedData);
+      resolve(combinedData);
     } catch (error) {
       console.error('Error loading decision log from API response:', error);
       reject(error);
@@ -121,22 +132,18 @@ export const loadVoteData = async (csvFile) => {
     Papa.parse(csvFile, {
       header: true,
       complete: (result) => {
-        console.log("Raw CSV Data:", result.data);
 
         // Filter out rows with empty or undefined 'Response' fields
         const filterRawResponses = result.data.filter(row => row.Response && row.Response.trim() !== "");
-        console.log("Filtered Responses (Non-empty):", filterRawResponses);
 
         // Create unique labels only for valid responses
         const uniqueResponses = Array.from(new Set(filterRawResponses.map(row => row.Response)));
-        console.log("Unique Responses:", uniqueResponses);
 
         // Create a mapping from unique responses to letter labels (A, B, C, ...)
         const labelMapping = {};
         uniqueResponses.forEach((response, index) => {
           labelMapping[response] = String.fromCharCode(65 + index); // 65 is ASCII for 'A'
         });
-        console.log("Label Mapping:", labelMapping);
 
         // Separate "Voted" count and filter proposals data
         let votedCountVal = 0;
@@ -147,17 +154,13 @@ export const loadVoteData = async (csvFile) => {
           }
           return true;
         });
-        console.log("Filtered Proposal Data (Excluding 'Voted'):", filteredData);
 
         // Update `votedCount`
         votedCount.set(votedCountVal);
-        console.log("Total 'Voted' Count:", votedCountVal);
 
         // Generate data for lineGraph and barChart using mapped letters
         const labels = filteredData.map(row => labelMapping[row.Response]);
         const values = filteredData.map(row => parseInt(row.Count, 10) || 0);
-        console.log("Graph Labels:", labels);
-        console.log("Graph Values:", values);
 
         lineGraphData.set({ labels, values });
         barChartData.set({ labels, values });
@@ -169,7 +172,6 @@ export const loadVoteData = async (csvFile) => {
           title: row.Response,
           count: parseInt(row.Count, 10) || 0
         })));
-        console.log("Final Proposals Data:", filteredData);
 
         voteDataLoaded.set(true);
         resolve();
@@ -203,3 +205,47 @@ export const clearVoteData = () => {
   votedCount.set(0);
   voteDataLoaded.set(false);
 };
+
+export const processVoteResults = (documents) => {
+  const voteCounts = {};
+  const voters = documents.filter(doc => doc.text === "Voted");
+  const proposals = documents.filter(doc => doc.text !== "Voted");
+
+  proposals.forEach(doc => {
+    const vote = doc.text;
+    voteCounts[vote] = (voteCounts[vote] || 0) + 1;
+  });
+
+  const labels = Object.keys(voteCounts).map((_, index) => String.fromCharCode(65 + index)); // 65 is ASCII for 'A'
+  const values = Object.values(voteCounts);
+
+  lineGraphData.set({ labels, values });
+  barChartData.set({ labels, values });
+
+  proposalsData.set(labels.map((label, index) => ({
+    vote: label,
+    proposal: label,
+    title: Object.keys(voteCounts)[index],
+    count: values[index]
+  })));
+
+  votedCount.set(voters.length);
+  voteDataLoaded.set(true);
+};
+
+const settings = new Earthstar.SharedSettings();
+
+const shareKeypair = {
+  address: import.meta.env.VITE_ADDRESS,
+  secret: import.meta.env.VITE_SECRET,
+};
+
+settings.addShare(shareKeypair.address);
+settings.addSecret(shareKeypair.address, shareKeypair.secret);
+
+export const replica = new Earthstar.Replica({
+  driver: new ReplicaDriverWeb(shareKeypair.address),
+  shareSecret: shareKeypair.secret,
+});
+
+export default settings;
