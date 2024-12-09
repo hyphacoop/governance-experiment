@@ -1,4 +1,5 @@
 <script>
+    import FetchVotes from './FetchVotes.svelte';
     import { decisionLogData, clearDecisionLog, isDecisionLogLoaded } from '../stores';
     let decisions = [];
     let isCsvLoaded;
@@ -23,7 +24,7 @@
     <h2>Decision Log</h2>
     <div class="flex flex-col flex-wrap items-start	content-start">
     {#each decisions as decision}
-      <details class="my-2 p-2 border border-purple rounded-lg max-w-2xl">
+      <details class="my-2 p-2 border border-purple rounded-lg">
         <summary class="font-semibold text-md text-left">{decision.short_title}</summary>
 
         <div class="mt-2">
@@ -57,6 +58,15 @@
                   <td class="px-2 py-1">{decision.other_notes}</td>
                 </tr>
               {/if}
+              {#if decision.vote_results}
+              <tr>
+                <td class="font-semibold px-2 py-1">Vote Results</td>
+                <td class="px-2 py-1">
+                  <FetchVotes hash={decision.vote_results} />
+
+                </td>
+              </tr>
+            {/if}
             </tbody>
           </table>
         </div>
