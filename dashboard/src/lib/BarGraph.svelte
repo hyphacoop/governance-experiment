@@ -3,14 +3,22 @@
   import { onMount } from "svelte";
   import Chart from "chart.js/auto";
 
-  let labels, values;
+  let labels = [];
+  let values = [];
+  let chart;
 
   $: barChartData.subscribe(data => {
     labels = data.labels;
     values = data.values;
+
+    // Update chart data if chart is already initialized
+    if (chart) {
+      chart.data.labels = labels;
+      chart.data.datasets[0].data = values;
+      chart.update();
+    }
   });
 
-  let chart;
   onMount(() => {
     const canvas = document.getElementById("votesChart");
     if (canvas instanceof HTMLCanvasElement) {
