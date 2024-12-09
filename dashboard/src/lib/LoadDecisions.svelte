@@ -15,8 +15,8 @@
     <h2 class="text-left">Decision Log</h2>
     <div class="flex flex-col items-start">
       <GoogleAuth />
-      <label>
-        <p class="text-left purple">Or load CSV</p>
+      <label class='flex flex-row'>
+        <p class="text-left purple mr-2">Or load CSV</p>
         <input type="file" accept=".csv" on:change={handleFileUpload} />
       </label>
     </div>
