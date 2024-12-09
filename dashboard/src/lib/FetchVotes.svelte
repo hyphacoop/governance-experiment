@@ -75,7 +75,7 @@
   
   <main>
     {#if hash}
-      <button on:click={fetchVotes}>Get vote results</button>
+      <button on:click={fetchVotes}>Visualize results</button>
     {:else}
       <p>No hash provided. Please specify a valid hash.</p>
     {/if}
