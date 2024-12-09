@@ -3,6 +3,11 @@
 
   let accessToken = null;
 
+  let spreadsheetIDs = {
+    'governance experiment': import.meta.env.VITE_GOOGLE_SPREADSHEET_ID2,
+    'decision log':  import.meta.env.VITE_GOOGLE_SPREADSHEET_ID,
+  }
+
   function handleSignInClick() {
     // Initialize and request access token when the button is clicked
     const tokenClient = window.google.accounts.oauth2.initTokenClient({
@@ -21,14 +26,16 @@
     }
 
     accessToken = response.access_token;
-    console.log('Access Token:', accessToken);
 
-    // Fetch spreadsheet data after acquiring the access token
-    fetchSpreadsheetData();
+    // Fetch spreadsheets after acquiring the access token
+
+    // For each spreadsheet ID, fetch it decisions data
+    for (const [key, value] of Object.entries(spreadsheetIDs)) {
+      fetchSpreadsheetData(value);
+    }
   }
 
-  async function fetchSpreadsheetData() {
-    const spreadsheetId = import.meta.env.VITE_GOOGLE_SPREADSHEET_ID;
+  async function fetchSpreadsheetData(spreadsheetId) {
     const sheetName = "Member + WG resolutions";
     const range = `${sheetName}!A1:Z1000`;
 
@@ -41,7 +48,6 @@
       );
 
       const data = await response.json();
-      console.log('Full API Response:', data);
 
       if (!response.ok) {
         throw new Error(`Failed to fetch spreadsheet data: ${response.status} - ${data.error.message}`);
