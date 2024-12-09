@@ -20,9 +20,14 @@
   },
   "dependencies": {
     "axios": "^1.7.9",
+    "boring-webcrypto-sha256": "^1.0.0",
     "chart.js": "^4.4.5",
     "dotenv": "^16.4.7",
+    "earthstar": "^10.2.2",
     "google-auth-library": "^9.15.0",
     "papaparse": "^5.4.1"
+  },
+  "overrides": {
+      "ws": "8.17.1"
   }
 }
