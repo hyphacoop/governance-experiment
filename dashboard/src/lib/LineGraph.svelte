@@ -44,7 +44,7 @@
               }
             },
             ticks: {  // Customize X-axis tick labels
-              color: 'white',
+              color: 'black',
               font: {
                 family: 'Work Sans', 
                 size: 12,
@@ -61,7 +61,7 @@
             title: { // Y-axis label (legend)
               display: true,
               text: '',   // Customize this text
-              color: 'white',
+              color: 'black',
               font: {
                 family: 'Work Sans', 
                 size: 14,
@@ -70,7 +70,7 @@
             },
             ticks: {            // Maximum value for Y-axis
               stepSize: 1,         // Step size between tick marks
-              color: 'white',
+              color: 'black',
               font: {
                 family: 'Work Sans', 
                 size: 12,
@@ -82,7 +82,7 @@
           legend: {
             display: false, // Hide legend
             labels: {
-              color: 'white',  // Customize legend text color
+              color: 'black',  // Customize legend text color
               font: {
                 family: 'Work Sans', 
                 size: 14,
@@ -97,7 +97,7 @@
 
 <div class="flex flex-col items-start component">
   <h2>
-    Votes for Proposals in second vote
+    Votes for Proposals
   </h2>
   <canvas id="participationChart"></canvas>
 </div>
