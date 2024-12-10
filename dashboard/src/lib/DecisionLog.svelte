@@ -32,7 +32,7 @@
 
   <div class="flex flex-col items-start component">
     <h2>Decision Log</h2>
-    <div class="flex flex-col flex-wrap items-start	content-start">
+    <div class="flex flex-row flex-wrap items-start	content-start">
     {#each decisions as decision}
       <details class="my-2 p-2 border border-purple rounded-lg">
         <summary class="font-semibold text-md text-left">{decision.short_title}</summary>
