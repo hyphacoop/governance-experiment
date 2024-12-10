@@ -76,6 +76,10 @@
     summary {
       cursor: pointer;
     }
+
+    details {
+      margin-right: 1rem;
+    }
   
     details[open] summary {
       font-weight: bold;
