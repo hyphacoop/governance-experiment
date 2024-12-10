@@ -4,6 +4,16 @@
     let decisions = [];
     let isCsvLoaded;
 
+    // Define table fields for dynamic rendering
+    const tableFields = [
+        { label: 'Date', key: 'date' },
+        { label: 'Description', key: 'description', class: 'description' },
+        { label: 'Deciding Group(s)', key: 'deciding_groups' },
+        { label: 'Resolution', key: 'resolution' },
+        { label: 'Supplemental Materials', key: 'supplemental_materials' },
+        { label: 'Other Notes', key: 'other_notes' }
+    ];
+
     // Subscribe to the decision log data from the store
     $: decisionLogData.subscribe(data => {
       decisions = data;
@@ -30,44 +40,26 @@
         <div class="mt-2">
           <table class="table-auto text-left max-w-xl">
             <tbody>
+              {#each tableFields as field}
+              {#if decision[field.key]}
               <tr>
-                <td class="font-semibold px-2 py-1">Date</td>
-                <td class="px-2 py-1">{decision.date}</td>
+                  <td class="font-semibold px-2 py-1">{field.label}</td>
+                  <td class={`px-2 py-1 ${field.class || ''}`}>
+                      {decision[field.key]}
+                  </td>
               </tr>
-              <tr>
-                <td class="font-semibold px-2 py-1">Description</td>
-                <td class="px-2 py-1 description">{decision.description}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold px-2 py-1">Deciding Group(s)</td>
-                <td class="px-2 py-1">{decision.deciding_groups}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold px-2 py-1">Resolution</td>
-                <td class="px-2 py-1">{decision.resolution}</td>
-              </tr>
-              {#if decision.supplemental_materials}
-                <tr>
-                  <td class="font-semibold px-2 py-1">Supplemental Materials</td>
-                  <td class="px-2 py-1">{decision.supplemental_materials}</td>
-                </tr>
               {/if}
-              {#if decision.other_notes}
-                <tr>
-                  <td class="font-semibold px-2 py-1">Other Notes</td>
-                  <td class="px-2 py-1">{decision.other_notes}</td>
-                </tr>
-              {/if}
+              {/each}
+
               {#if decision.vote_results}
               <tr>
-                <td class="font-semibold px-2 py-1">Vote Results</td>
-                <td class="px-2 py-1">
-                  <FetchVotes hash={decision.vote_results} />
-
-                </td>
+                  <td class="font-semibold px-2 py-1">Vote Results</td>
+                  <td class="px-2 py-1">
+                      <FetchVotes hash={decision.vote_results} />
+                  </td>
               </tr>
-            {/if}
-            </tbody>
+              {/if}
+          </tbody>
           </table>
         </div>
       </details>
