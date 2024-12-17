@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟪</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://ghauth.netlify.app https://github.com https://apis.google.com https://ssl.gstatic.com https://www.gstatic.com https://www.google.com https://accounts.google.com;
+        connect-src 'self' https://ghauth.netlify.app https://api.github.com https://www.googleapis.com https://sheets.googleapis.com wss://earthstar-futures.fly.dev;
+        img-src 'self' data:;
+        frame-src https://github.com https://accounts.google.com;
+        style-src 'self' 'unsafe-inline';
+      "
+    />
+    <title>Dashboard</title>
+    <script type="module" crossorigin src="/governance-experiment/assets/index-Ccs-_cqG.js"></script>
+    <link rel="stylesheet" crossorigin href="/governance-experiment/assets/index-CXlYA_kt.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+      // Redirect all unknown paths to the base URL and preserve the path/query as a hash fragment
+      const baseUrl = "/governance-experiment/";
+      if (!window.location.pathname.startsWith(baseUrl) && !window.location.pathname.endsWith(".html")) {
+        const fullPath = window.location.pathname + window.location.search;
+        window.location.replace(baseUrl + "#" + fullPath);
+      }
+    </script>  
+    
+  </body>
+</html>
