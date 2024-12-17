@@ -4,6 +4,20 @@ import { ReplicaDriverWeb } from "earthstar/browser";
 import { writable } from 'svelte/store';
 import Papa from 'papaparse';
 
+// Retrieve decision log from sessionStorage, or default to an empty array
+const storedDecisionLog = JSON.parse(sessionStorage.getItem("decisionLog") || "[]");
+const isLogLoaded = storedDecisionLog.length > 0;
+
+// Retrieve stored GitHub issues from sessionStorage or default to an empty array
+const storedGithubIssues = JSON.parse(sessionStorage.getItem("githubIssues") || "[]");
+
+export const githubIssues = writable(storedGithubIssues);
+
+// Subscribe to the store to persist changes to sessionStorage
+githubIssues.subscribe((value) => {
+  sessionStorage.setItem("githubIssues", JSON.stringify(value));
+});
+
 export const decisionLogData = writable([]);
 export const isDecisionLogLoaded = writable(false);
 
@@ -27,6 +41,31 @@ export const proposalsData = writable([
   { vote: "-", proposal: '-', title: 'Placeholder Proposal 2', count: 0 }
 ]);
 
+// Sync decision log data with sessionStorage
+decisionLogData.subscribe((data) => {
+  if (data.length > 0) {
+    sessionStorage.setItem("decisionLog", JSON.stringify(data));
+  } else {
+    sessionStorage.removeItem("decisionLog");
+  }
+});
+
+isDecisionLogLoaded.subscribe((loaded) => {
+  if (!loaded) {
+    sessionStorage.removeItem("decisionLog");
+  }
+});
+
+// Function to clear the decision log
+export const clearDecisionLog = () => {
+  decisionLogData.set([]);
+  isDecisionLogLoaded.set(false);
+};
+
+export const googleSpreadsheetIDs = {
+  "decision log": import.meta.env.VITE_GOOGLE_SPREADSHEET_ID,
+  "governance experiment": import.meta.env.VITE_GOOGLE_SPREADSHEET_ID2,
+};
 
 export const loadDecisionLog = async (csvFile) => {
   return new Promise((resolve, reject) => {
@@ -57,6 +96,7 @@ export const loadDecisionLog = async (csvFile) => {
     reader.readAsText(csvFile);
   });
 };
+
 export const loadDecisionLogFromApi = (apiResponse) => {
   return new Promise((resolve, reject) => {
     try {
@@ -102,19 +142,15 @@ export const loadDecisionLogFromApi = (apiResponse) => {
         );
 
       
-      // Retrieve the current data from the store
-      let currentData = [];
-      decisionLogData.subscribe(data => {
-        currentData = data;
-      })();
+      // Append new data without duplicates
+      decisionLogData.update((currentData) => {
+        const combinedData = [...currentData, ...parsedData];
+        const uniqueData = Array.from(new Set(combinedData.map((item) => JSON.stringify(item)))).map(JSON.parse);
+        return uniqueData;
+      });
 
-      // Append the new data to the existing data
-      const combinedData = [...currentData, ...parsedData];
-      // Update the store
-      decisionLogData.set(combinedData);
       isDecisionLogLoaded.set(true);
-
-      resolve(combinedData);
+      resolve();
     } catch (error) {
       console.error('Error loading decision log from API response:', error);
       reject(error);
@@ -122,11 +158,6 @@ export const loadDecisionLogFromApi = (apiResponse) => {
   });
 };
 
-
-export const clearDecisionLog = () => {
-  decisionLogData.set([]);  
-  isDecisionLogLoaded.set(false);  
-};
 export const loadVoteData = async (csvFile) => {
   return new Promise((resolve, reject) => {
     Papa.parse(csvFile, {
