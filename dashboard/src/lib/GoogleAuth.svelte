@@ -1,73 +1,47 @@
 <script>
-  import { loadDecisionLogFromApi } from '../stores';
+  import { googleToken } from "../stores/auth";
+  import { fetchDecisionLog } from "../stores/utils";
+  import { loadDecisionLogFromApi, isDecisionLogLoaded, googleSpreadsheetIDs } from "../stores";
 
+  let isLogLoaded;
   let accessToken = null;
-
-  let spreadsheetIDs = {
-    'governance experiment': import.meta.env.VITE_GOOGLE_SPREADSHEET_ID2,
-    'decision log':  import.meta.env.VITE_GOOGLE_SPREADSHEET_ID,
-  }
+  $: accessToken = $googleToken;
 
   function handleSignInClick() {
-    // Initialize and request access token when the button is clicked
     const tokenClient = window.google.accounts.oauth2.initTokenClient({
       client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-      scope: 'https://www.googleapis.com/auth/spreadsheets.readonly',
+      scope: "https://www.googleapis.com/auth/spreadsheets.readonly",
       callback: handleTokenResponse,
     });
 
     tokenClient.requestAccessToken();
   }
 
-  function handleTokenResponse(response) {
+  async function handleTokenResponse(response) {
+    console.log("Token response received:", response);
     if (response.error) {
-      console.error('Error fetching access token:', response.error);
+      console.error("Error fetching access token:", response.error);
       return;
     }
-
-    accessToken = response.access_token;
-
-    // Fetch spreadsheets after acquiring the access token
-
-    // For each spreadsheet ID, fetch it decisions data
-    for (const [key, value] of Object.entries(spreadsheetIDs)) {
-      fetchSpreadsheetData(value);
-    }
-  }
-
-  async function fetchSpreadsheetData(spreadsheetId) {
-    const sheetName = "Member + WG resolutions";
-    const range = `${sheetName}!A1:Z1000`;
+    console.log("Setting token in store...");
+    googleToken.set(response.access_token); // Save token to store
 
     try {
-      const response = await fetch(
-        `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${encodeURIComponent(range)}`,
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        }
-      );
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(`Failed to fetch spreadsheet data: ${response.status} - ${data.error.message}`);
-      }
-
-      if (!data.values) {
-        console.error('No data found in spreadsheet.');
+      isLogLoaded = $isDecisionLogLoaded;
+      if (isLogLoaded) {
+        console.log("Decision log is already loaded. Skipping API fetch.");
         return;
       }
-
-      await loadDecisionLogFromApi(data);
+      const decisionLogData = await fetchDecisionLog(googleSpreadsheetIDs, response.access_token);
     } catch (error) {
-      console.error('Error fetching spreadsheet data:', error);
+      console.error("Error loading decision log:", error);
     }
   }
 </script>
 
-
 <button id="googleSignInButton" on:click={handleSignInClick}>
-  Sign in to Google
+    Sign in to Google
 </button>
 
 <style>
@@ -84,5 +58,11 @@
   button:hover {
     background-color: black;
     color: white;
+  }
+
+  button:disabled {
+    background-color: #ddd;
+    color: #666;
+    cursor: not-allowed;
   }
 </style>
