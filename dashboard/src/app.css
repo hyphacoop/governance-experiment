@@ -48,6 +48,9 @@ h1 {
   font-size: 2.2em;
   line-height: 1.1;
 }
+h2 {
+  font-size: 1.4em;
+}
 
 .card {
   padding: 2em;
