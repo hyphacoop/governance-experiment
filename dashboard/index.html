@@ -22,11 +22,13 @@
     <script type="module" src="/src/main.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
-      // Redirect all unknown paths back to the root for the Svelte router
-      if (window.location.pathname !== "/" && !window.location.pathname.endsWith(".html")) {
-        window.location.replace("/");
+      // Redirect all unknown paths to the base URL and preserve the path/query as a hash fragment
+      const baseUrl = "/governance-experiment/";
+      if (!window.location.pathname.startsWith(baseUrl) && !window.location.pathname.endsWith(".html")) {
+        const fullPath = window.location.pathname + window.location.search;
+        window.location.replace(baseUrl + "#" + fullPath);
       }
-    </script>
+    </script>  
     
   </body>
 </html>
