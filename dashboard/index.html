@@ -4,12 +4,29 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟪</text></svg>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://apis.google.com https://ssl.gstatic.com https://www.gstatic.com https://www.google.com https://accounts.google.com;">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://ghauth.netlify.app https://github.com https://apis.google.com https://ssl.gstatic.com https://www.gstatic.com https://www.google.com https://accounts.google.com;
+        connect-src 'self' https://ghauth.netlify.app https://api.github.com https://www.googleapis.com;
+        img-src 'self' data:;
+        frame-src https://github.com https://accounts.google.com;
+        style-src 'self' 'unsafe-inline';
+      "
+    />
     <title>Dashboard</title>
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+      // Redirect all unknown paths back to the root for the Svelte router
+      if (window.location.pathname !== "/" && !window.location.pathname.endsWith(".html")) {
+        window.location.replace("/");
+      }
+    </script>
+    
   </body>
 </html>
