@@ -24,10 +24,10 @@
     }
   
     async function handleGitHubCallback() {
-  // Check both search params and hash fragment
-  const params = new URLSearchParams(
-    window.location.search || window.location.hash.slice(1) // Remove the "#" in hash
-  );
+  // Extract "code" manually from the hash fragment
+  const hash = window.location.hash.slice(1); // Remove the "#"
+  const [path, queryString] = hash.split("?");
+  const params = new URLSearchParams(queryString);
   const code = params.get("code");
 
   if (!code) {
@@ -62,7 +62,7 @@
 
 
 onMount(() => {
-  const currentPath = window.location.hash.slice(1);
+  const currentPath = window.location.hash.slice(1).split("?")[0];
   if (currentPath.startsWith("/governance-experiment/callback")) {
     handleGitHubCallback();
   }
@@ -119,7 +119,7 @@ async function handleLogout() {
       {#if $githubIssues.length > 0}
         <GithubIssues />
       {:else}
-        <p>No issues available.</p>
+        <p>Loading issues...</p>
       {/if}
       <button on:click={handleLogout} class="text-white px-4 py-2 rounded mt-4 ml-2">
         Sign out
