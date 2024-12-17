@@ -50,6 +50,7 @@ export const logOutGoog = () => {
     console.log("Logging out and clearing GitHub token...");
     githubToken.set(null);
     githubIssues.set([]);
+    sessionStorage.removeItem("github_token");
     };
 
     // Function to log out (clear tokens and reset app state)
