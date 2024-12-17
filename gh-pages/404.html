@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      // Preserve the current URL path and query parameters
+      const currentUrl = window.location.pathname + window.location.search;
+      const baseUrl = "/governance-experiment/";
+
+      // Redirect to the main app while preserving the full path
+      window.location.replace(baseUrl + "#" + currentUrl);
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>
