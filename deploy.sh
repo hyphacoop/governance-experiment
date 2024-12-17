@@ -2,10 +2,16 @@
 #
 # This script deploys both the dashboard and the timeline apps to a clean "deploy" branch
 #
+set -e  # Exit immediately on error
 
-set -e  # Exit immediately if any command fails
+# Step 1: Ensure we are on main and prepare to switch
+CURRENT_BRANCH=$(git branch --show-current)
+if [ "$CURRENT_BRANCH" != "main" ]; then
+    echo "⚠️ ERROR: You must run this script from the 'main' branch."
+    exit 1
+fi
 
-# Step 1: Build the apps
+# Step 2: Build the apps
 echo "Building dashboard app..."
 cd dashboard
 npm install --silent
@@ -18,52 +24,53 @@ npm install --silent
 npm run build
 cd ..
 
-# Step 2: Prepare a clean deployment directory
+# Step 3: Prepare deployment directory
 echo "Preparing deployment directory..."
-rm -rf gh-pages-temp
-mkdir gh-pages-temp
+rm -rf deploy-temp
+mkdir deploy-temp
 
-# Step 3: Copy builds to the deployment directory (safely using rsync)
-echo "Copying dashboard build to the root of the deploy branch..."
-rsync -av --delete --exclude=".env" dashboard/dist/ gh-pages-temp/
+echo "Copying dashboard build to root of deploy..."
+cp -r dashboard/dist/* deploy-temp/
 
-echo "Copying timeline build to /timeline subdirectory..."
-mkdir -p gh-pages-temp/timeline
-rsync -av --delete --exclude=".env" timeline/dist/ gh-pages-temp/timeline/
+echo "Copying timeline build to /timeline..."
+mkdir -p deploy-temp/timeline
+cp -r timeline/dist/* deploy-temp/timeline/
 
-# Step 4: Deploy to the deploy branch
-echo "Deploying to deploy branch..."
+# Step 4: Create a clean deploy branch
+echo "Creating a clean deploy branch..."
 
-# Fetch the deploy branch or create it if it doesn't exist
-git fetch origin deploy || echo "No deploy branch exists yet."
+# Delete local deploy branch if it exists
 if git show-ref --quiet refs/heads/deploy; then
-    git checkout deploy
-    git reset --hard origin/deploy
-else
-    git checkout --orphan deploy
+    echo "Deleting existing local 'deploy' branch..."
+    git branch -D deploy
 fi
 
-# Remove all tracked files to clean the branch
-echo "Cleaning deploy branch..."
-git rm -rf . > /dev/null
+# Switch to a completely clean orphan branch
+git checkout --orphan deploy
+git rm -rf . > /dev/null  # Remove all tracked files in this new branch
 
-# Copy only the clean deployment files
-echo "Copying deployment files to the deploy branch..."
-rsync -av --delete gh-pages-temp/ .
+# Step 5: Copy deployment files
+echo "Copying new build files into the deploy branch..."
+cp -r deploy-temp/* .
 
-# Step 5: Commit and push the changes
-echo "Committing deployment files..."
+# Step 6: Ensure we're on deploy branch before committing
+CURRENT_BRANCH=$(git branch --show-current)
+if [ "$CURRENT_BRANCH" != "deploy" ]; then
+    echo "❌ ERROR: Not on 'deploy' branch! Aborting commit."
+    exit 1
+fi
+
+# Step 7: Commit and push
+echo "Committing and pushing to deploy branch..."
 git add --all
-git commit -m "Deploy Svelte apps to GitHub Pages" || echo "No changes to commit."
-
-echo "Pushing to deploy branch..."
+git commit -m "Deploy Svelte apps to GitHub Pages"
 git push origin deploy --force
 
-# Step 6: Cleanup
-echo "Cleaning up..."
-rm -rf gh-pages-temp
-git checkout main  # Switch back to your main branch
+# Step 8: Cleanup and return to main
+echo "Cleaning up deployment artifacts..."
+rm -rf deploy-temp
+git checkout main
 
-echo "Deployment complete! Your apps are live at:"
+echo "✅ Deployment successful! Your apps are live at:"
 echo "https://hyphacoop.github.io/governance-experiment/"
 echo "https://hyphacoop.github.io/governance-experiment/timeline/"
