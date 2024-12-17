@@ -58,7 +58,8 @@
 
 
 onMount(() => {
-  if (window.location.pathname === "/governance-experiment/callback") {
+  const currentPath = window.location.hash.slice(1);
+  if (currentPath.startsWith("/governance-experiment/callback")) {
     handleGitHubCallback();
   }
 });
