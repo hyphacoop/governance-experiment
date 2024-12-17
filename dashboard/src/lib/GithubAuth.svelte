@@ -11,7 +11,7 @@
     let topDivClass = "my-4 flex flex-col border-2 border-purple rounded p-2 items-baseline"; // Default class
   
     const clientId = import.meta.env.VITE_GITHUB_CLIENT_ID;
-    const redirectUri = import.meta.env.VITE_REDIRECT_URI || "https://tripledoublev.github.io/governance-experiment/callback";
+    const redirectUri = import.meta.env.VITE_REDIRECT_URI || "https://hyphacoop.github.io/governance-experiment/callback";
   
     const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(
         redirectUri
