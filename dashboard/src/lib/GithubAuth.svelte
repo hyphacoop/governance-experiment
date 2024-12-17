@@ -24,7 +24,10 @@
     }
   
     async function handleGitHubCallback() {
-  const params = new URLSearchParams(window.location.search);
+  // Check both search params and hash fragment
+  const params = new URLSearchParams(
+    window.location.search || window.location.hash.slice(1) // Remove the "#" in hash
+  );
   const code = params.get("code");
 
   if (!code) {
@@ -44,9 +47,10 @@
       githubToken.set(accessToken);
       console.log("GitHub Access Token:", accessToken);
 
-       // Clean up the URL
-       const newUrl = redirectUri; // Remove `/callback` and query params
+      // Clean up the URL to remove hash and query params
+      const newUrl = window.location.origin + "/governance-experiment/";
       window.history.replaceState({}, document.title, newUrl);
+
       fetchColumnCards();
     } else {
       console.error("Error exchanging code for token:", data);
