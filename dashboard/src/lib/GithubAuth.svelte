@@ -45,6 +45,7 @@
     if (data.access_token) {
       accessToken = data.access_token;
       githubToken.set(accessToken);
+      sessionStorage.setItem("github_token", accessToken);
       console.log("GitHub Access Token:", accessToken);
 
       // Clean up the URL to remove hash and query params
@@ -84,8 +85,14 @@ async function fetchColumnCards() {
 
 
     if (!response.ok) {
+      if (response.status === 401) {
+        console.error("Bad credentials. Token is invalid or expired.");
+        logOutGithub(); // Clear token and session
+        return;
+      }
       throw new Error(`Failed to fetch column cards: ${response.status}`);
     }
+
 
     const data = await response.json();
     console.log("Fetched column cards:", data);
