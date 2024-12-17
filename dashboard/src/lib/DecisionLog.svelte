@@ -1,6 +1,7 @@
 <script>
     import FetchVotes from './FetchVotes.svelte';
     import { decisionLogData, clearDecisionLog, isDecisionLogLoaded } from '../stores';
+    import { revokeGoogleToken } from '../stores/auth';
     let decisions = [];
     let isCsvLoaded;
 
@@ -27,6 +28,11 @@
     // Handle clearing data
     const handleClearData = () => {
         clearDecisionLog();
+    };
+
+    // Handle clearing data
+    const handleClearToken = () => {
+        revokeGoogleToken();
     };
 </script>
 
@@ -66,9 +72,11 @@
     {/each}
     </div>
     {#if isCsvLoaded}
-    <button on:click={handleClearData} class="text-white px-4 py-2 rounded mt-4">
-      Clear data
+    <div class='flex flex-row'>
+    <button on:click={handleClearToken} class="text-white px-4 py-2 rounded mt-4 ml-2">
+      Sign out
     </button>
+    </div>
   {/if}
   </div>
 
