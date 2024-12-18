@@ -4,10 +4,9 @@
   import ThemeSwitcher from './lib/ThemeSwitcher.svelte';
 
   let groupedTimeline = {};
-  let selectedEvent = null;
 
   async function loadTimeline() {
-    const response = await fetch("/timeline.json");
+    const response = await fetch("timeline.json");
     const data = await response.json();
 
     // Group events by year
