@@ -39,12 +39,12 @@
         <div class="flex flex-col min-[888px]:flex-row gap-1 min-[888px]:gap-4 yearly-events-container">
 
           {#each events as event}
-            <div 
+            <button 
               class="event flex justify-center items-center relative z-10 flex-shrink-0 text-center px-4 py-2 border rounded-full hover:bg-purple {selectedEvent === event ? 'active' : ''}"
               on:click={() => selectEvent(event)}
             >
               <span>{event.id}</span>
-            </div>
+        </button>
           {/each}
         </div>
         <!-- Year Header -->
