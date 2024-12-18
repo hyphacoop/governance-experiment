@@ -28,7 +28,7 @@ echo "Copying timeline build to dashboard/dist/timeline..."
 mkdir dashboard/dist/timeline
 cp -r timeline/dist/* dashboard/dist/timeline/
 
-echo "Copying timeline build to dashboard/dist/timeline..."
+echo "Deploying to Github pages..."
 cd dashboard
 npm run deploy
 
