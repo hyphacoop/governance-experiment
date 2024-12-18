@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# This script deploys both the dashboard and the timeline apps to a clean "deploy" branch
+# This script deploys both the dashboard and the timeline apps to github pages.
 #
 set -e  # Exit immediately on error
 
-# Step 1: Ensure we are on main and prepare to switch
+# Step 1: Ensure we are on main branch
 CURRENT_BRANCH=$(git branch --show-current)
 if [ "$CURRENT_BRANCH" != "main" ]; then
     echo "⚠️ ERROR: You must run this script from the 'main' branch."
