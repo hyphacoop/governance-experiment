@@ -17,6 +17,8 @@
     }, {});
   }
 
+  let selectedEvent = { legend: "This timeline represents the official lore of Hypha Worker Cooperative. It contains significant events that have been collectively agreed upon by the members, showcasing our journey, milestones, and key decisions in our cooperative's history." };
+  
   function selectEvent(event) {
     selectedEvent = event;
   }
