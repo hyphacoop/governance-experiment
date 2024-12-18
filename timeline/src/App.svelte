@@ -29,17 +29,18 @@
 </script>
 <ThemeSwitcher />
 
-<div class="flex flex-col items-center gap-4">
-  <div class="flex flex-row items-center gap-4 timeline-container">
+<div class="flex flex-row min-[888px]:flex-col items-center justify-between max-w-full">
+  <div class="flex flex-col min-[888px]:flex-row items-center gap-1 min-[888px]:gap-4 timeline-container">
     {#each Object.entries(groupedTimeline) as [year, events]}
       <div class="w-full flex flex-col items-start">
 
 
         <!-- Events for the Year -->
-        <div class="yearly-events-container">
+        <div class="flex flex-col min-[888px]:flex-row gap-1 min-[888px]:gap-4 yearly-events-container">
+
           {#each events as event}
             <div 
-              class="event flex justify-center items-center relative z-10 flex-shrink-0 text-center px-4 py-2 border rounded-full hover:bg-purple"
+              class="event flex justify-center items-center relative z-10 flex-shrink-0 text-center px-4 py-2 border rounded-full hover:bg-purple {selectedEvent === event ? 'active' : ''}"
               on:click={() => selectEvent(event)}
             >
               <span>{event.id}</span>
@@ -52,7 +53,7 @@
     {/each}
   </div>
   {#if selectedEvent}
-    <div class="legend border p-4 mt-8 rounded w-full max-w-md text-center">
+    <div class="legend border p-4 mt-8 ml-8 min-[456px]:ml-16 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
       {selectedEvent.legend}
     </div>
   {/if}
@@ -73,9 +74,9 @@
     background-color: #9900FC;
     border-color: #9900FC;
   }
-  .yearly-events-container {
-    display: flex;
-    gap: 1rem;
+  .active {
+    border-style: dashed;
+    border-width: 3px;
   }
   .legend {
     border-width: 2px;
@@ -90,6 +91,27 @@
     background-color: var(--border-color);
     transform: translateY(-50%);
     z-index: -1;
+  }
+  .year-header {
+      display:none;
+    }
+  @media (min-width: 480px) {
+    .year-header {
+      display: block;
+    }
+  }  
+  @media (max-width: 887px) {
+    .event::before {
+      top: 102%;
+      left: 50%;
+      width: 2px;
+      height: calc(100% + 0.5rem);
+      transform: translateX(-50%);
+    }
+    .year-header {
+      position: absolute;
+      transform: translate(-150%, 60%);
+    }
   }
 
   .timeline-container > .w-full:last-of-type .yearly-events-container .event:last-of-type::before {
