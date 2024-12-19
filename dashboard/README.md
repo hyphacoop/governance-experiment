@@ -46,13 +46,9 @@ To get started with the project, follow these steps:
     npm run dev
     ```
 
-## Usage
+## Deployment
 
-### Loading Vote Data
-
-1. Navigate to the "Voting interface".
-2. Once you have voted, you can obtain the results by clicking `Export to CSV`
-3. On the dashboard, Find the "Load CSV" option and load your vote data file.
+This dashboard is deployed on github pages. The deploy.sh script automatically builds both the dashboard and the timeline and deploys it to this repository's github page. 
 
 ### Loading Decision Log
 
