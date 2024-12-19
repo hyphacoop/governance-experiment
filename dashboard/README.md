@@ -70,6 +70,30 @@ The following steps describe the purpose of each API, how they interact with the
 
     - Voting results can be visualized with the BarGraph.svelte and LineGraph.svelte components.
 
+## Environment Variables
+
+The .env file is essential for connecting the dashboard to the required APIs. You will find all list of these variables in the .env.example file.
+
+
+## How it all works together
+-Authentication Flow:
+    - Users authenticate with Google and GitHub to access their respective features:
+
+    - Google authentication grants access to decision logs in Google Sheets.
+
+    - GitHub authentication retrieves project board issues for governance tasks.
+
+-Data Flow:
+
+    - Google Sheets: Decision logs are loaded and processed to populate the DecisionLog.svelte component.
+
+    - GitHub: Issues are fetched and displayed in the GithubIssues.svelte component.
+
+    - Earthstar: Vote results are fetched from the Earthstar server and visualized using BarGraph.svelte and LineGraph.svelte.
+
+- Integration:
+
+    - Each API provides specific functionality that enhances the overall governance process. For instance, Google Sheets enables easy data sharing, while Earthstar ensures decentralized and secure vote tracking.
 
 ## Table of Contents
 
