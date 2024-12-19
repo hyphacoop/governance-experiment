@@ -56,3 +56,15 @@ For sensitive or anonymous votes, we developed [Constellate](https://github.com/
 We used GitHub issues and project boards for tracking decisions, proposals, and feedback during the experiment.
 
 ---
+
+## Tools Used
+
+- **[Dashboard](./dashboard):** Visualizes decision logs, vote results, and other governance data.
+- **[Timeline](./timeline):** Showcases selected co-op milestones.
+- **Earthstar:** A decentralized storage platform used for vote management and results.
+- **Matrix:** Our chat space for discussions.
+- **Google Sheets:** Provides an accessible interface for decision logs.
+- **GitHub:** Facilitates issue tracking and repository management.
+
+---
+
