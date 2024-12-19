@@ -7,44 +7,18 @@ The project comprises two main components:
 - [**Dashboard**](./dashboard): A frontend interface for collaborative decision-making, visualizing proposals, and vote results.
 - [**Timeline**](./timeline): A visual representation of key moments in Hypha's history, co-created through participatory processes.
 
+---
 
-1. **Parse Archive and Extract Insights:**
-   - Gather as many insights as possible from the meeting notes.
-   - Examples of Insights: Number of consecutive monthly all-hands meetings, longest meeting in character count, number of projects in project updates, notable moments, and fun facts.
-2. **Pre-filter and Parse Meetings:**
-   - Review meeting notes to extract and pre-filter insights.
-   - Ensure insights are significant and relevant to the cooperative.
-3. **Consultation with a Small Group:**
-   - Present pre-filtered insights to a small group for initial review.
-   - Select the top 5 insights based on their relevance and interest.
-4. **Group Deliberation:**
-   - Present insights to the entire cooperative or a designated decision-making body.
-   - Decide on whether the insight is an interesting fact about the coop, needs redaction or encryption, or should be edited or altered aesthetically.
-5. **Approval Process:**
-   - Reach consensus on whether the insight should be approved, redacted, encrypted, or edited.
-   - Record decisions and rationale for transparency.
-6. **Minting as On-Chain SVG NFT Tokens:**
-   - Mint approved insights as on-chain SVG NFT tokens.
-   - Preserve important milestones and notable moments as digital artifacts.
+## Table of Contents
 
-#### Key Factors
+- [Project Description](#project-description)
+- [Process](#process)
+- [Voting Platforms](#voting-platforms)
+- [Tools Used](#tools-used)
+- [Links to Key Repositories](#links-to-key-repositories)
+- [Conclusion](#conclusion)
 
-- **Transparency:** Decide on the level of transparency for each insight.
-- **Historical Record:** Mint important milestones as NFTs to create a digital archive.
-- **Collaborative Decision-Making:** Test and refine generative decision processes within the cooperative.
-
-### Tools Used for the Experiment
-
-- Matrix chat
-- Earthstar voting tool
-- Solidity smart contract
-- Python scripts
-
-These tools have been chosen for their simplicity. Some of these will be used only by myself, such as the Python script for generating visuals and parsing meeting notes. Other tools will be used by all participants to discuss, argue, propose and vote on what makes the cut as official Hypha lore.
-
-### Matrix
-
-Matrix will be central to these experiments. I will create a new room to host this project's discussions and deliberations. We will use chat to describe the project, gather suggestions, and deliberate on what elements need to be canonized. For quick votes, we will use emoji reactions in Matrix. For votes that are more controversial, we will use the Earthstar voting tool I built. Once items and their metadata (image and description) are collectively approved, they will be minted on-chain as NFTs.
+---
 
 ### Earthstar-based Voting Tool
 
