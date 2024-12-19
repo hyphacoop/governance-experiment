@@ -20,19 +20,20 @@ The project comprises two main components:
 
 ---
 
-### Earthstar-based Voting Tool
+## Project Description
 
-For more sensitive votes, we can use the Earthstar-based voting tool I built, which allows for anonymous voting. This tool is ideal for scenarios where voter privacy is essential, ensuring that votes remain confidential while still allowing for accurate and fair decision-making.
+This governance experiment aims to:
+1. **Document and Visualize History:** Create a co-op timeline by identifying and voting on key events.
+2. **Test Governance Tools:** Explore decentralized and participatory decision-making processes using various platforms.
+3. **Build Co-op Lore:** Enhance the cooperative’s narrative by collaboratively curating and celebrating its milestones.
 
-### On-chain
+Through the experiment, we:
+- Collect and analyze historical data from meeting notes, proposals, and decisions.
+- Use multiple voting platforms to deliberate and decide what becomes part of the timeline.
+- Leverage decentralized technologies, such as Earthstar, for secure, anonymous voting.
 
-For this initial experiment, I suggest 2 options. Either we mint the tokens on testnet or on Polygon. Testnet will be free and might reduce some financial pressure. Alternatively, if we choose to go with Polygon, we can consider the option of minting these tokens as collectibles for the broader public. Orb seems like an interesting option where these items could exist for the public to collect (Orb being a web3 social platform part of the Lens protocol).
+---
 
-In the end, these options are not mutually exclusive. We could run the governance experiment on testnet and also mint them as collectible NFTs on another chain.
-
-In summary, these NFTs could exist both on Ethereum testnet or on a cheap EVM chain such as Polygon. I decided to keep votes and other decisions off-chain for this early phase. Instead of having the entire process live on the blockchain, I opted to only bring its final output on-chain. This means that the prior steps are designed as a mechanism for deciding what we want to bring on-chain.
-
-I imagine this will simplify the process for everyone and will allow us to focus on the decision-making process itself instead of technical details such as tokens, chains, and wallet interactions.
 
 ### Conclusion
 
