@@ -76,3 +76,8 @@ We used GitHub issues and project boards for tracking decisions, proposals, and 
 
 ---
 
+## Conclusion
+
+The Governance Experiment combines decentralized tools, collaborative storytelling, and participatory decision-making to document Hypha’s history and refine its governance processes. By testing various methods and tools, we aim to create a replicable framework for horizontal governance and explore new ways of working together.
+
+Stay tuned for future updates. See the current version of the [timeline on GitHub Pages](https://hyphacoop.github.io/governance-experiment/timeline) and explore with us the potential for future integrations.
