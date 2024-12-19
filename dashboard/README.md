@@ -164,3 +164,11 @@ VITE_SECRET=your-earthstar-secret
 ### Integration
 
 - Each API provides specific functionality that enhances the overall governance process. For instance, Google Sheets enables easy data sharing, while Earthstar ensures decentralized and secure vote tracking.
+
+### Contribution Guidelines
+
+If you'd like to contribute to this project:
+
+   - Fork the repository and create a new branch for your feature or bugfix.
+   - Submit a pull request with a clear description of your changes.
+
