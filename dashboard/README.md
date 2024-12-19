@@ -32,18 +32,18 @@ This interface integrates multiple APIs to gather data from different sources in
 To get started with the project, follow these steps:
 
 1. Clone the repository:
-    ```
+    ```sh
     git clone https://github.com/hyphacoop/governance-experiment.git
     cd governance-experiment/dashboard
     ```
 
 2. Install dependencies:
-    ```
+    ```sh
     npm install
     ```
 
 3. Start the development server:
-    ```
+    ```sh
     npm run dev
     ```
 
