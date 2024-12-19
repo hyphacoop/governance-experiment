@@ -140,7 +140,7 @@ The .env file is essential for connecting the dashboard to the required APIs. Yo
 ## Features
 
 - **Proposals Table:** Display proposals.
-- **Vote Results:** Upload and visualize vote results from CSV files.
+- **Vote Results:** Fetch vote results from Earthstar server.
 - **Decision Log:** Load and display decision logs.
 - **Graphs:** Visualize data using different graphs.
 
