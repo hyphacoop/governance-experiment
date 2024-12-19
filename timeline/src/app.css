@@ -6,8 +6,7 @@
   --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   --line-height: 1.5;
   --font-weight: 400;
-
-  --color-scheme: light;
+  --color-scheme: dark;
   --color: rgba(0, 0, 0, 0.87);
   --border-color: rgba(0, 0, 0, 0.87);
   --background-color: #ffffff;
@@ -15,7 +14,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: all 0.25s ease-in-out;
+  transition: all 1.25s ease-in-out;
 }
 
 
@@ -47,7 +46,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   display: flex;
-  place-items: center;
+  place-items: start;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -83,6 +82,7 @@ button:hover {
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+  border: 2px solid transparent;
+  outline: 2px solid var(--color);
+} 
 
