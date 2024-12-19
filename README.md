@@ -34,11 +34,13 @@ Through the experiment, we:
 
 ---
 
+## Process
 
-### Conclusion
+1. **Data Collection:** Extract insights from meeting notes and cooperative history.
+2. **Voting and Deliberation:** Use a combination of voting tools, including ADoodle, Onvote.app, and a custom-built Earthstar-based voting interface, to gather participants' approval.
+3. **Visualization:** Represent selected events visually through the [timeline](./timeline).
+4. **Feedback and Iteration:** Gather member feedback to refine the tools and processes.
+5. **Lore Creation:** Publish a finalized timeline and decisions as part of Hypha’s lore.
 
-### Conclusion
+---
 
-Through this process, we aim to learn how to better deliberate, make proposals, and make decisions. The result will be an enhanced decision-making process and also, some content and images about the cooperative's history — essentially, creating the co-op lore. This low-stakes exercise will help us test out generative decision processes and provide ideas on how to better work together. This process will also lead to what we reveal and to what extent. Some of these insights might be important but too sensitive to be shared in public. In such cases, we could decide to encrypt or hash the data to conceal or obfuscate certain details. This experiment also offers an opportunity to preserve and celebrate our cooperative's history through the minting of digital artifacts.
-
-By simplifying the process and not using DAO tooling, we can focus more on the decision-making aspect itself, ensuring the process is accessible and straightforward for all participants. This technical detail could always be revised and integrated if there is an interest to bring more of the decision process on-chain.
