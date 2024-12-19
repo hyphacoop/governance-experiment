@@ -174,7 +174,7 @@ It is possible to load data decision log manually as CSV. Below you will find th
 
 
 ### Loading Decision Log
-
+This dashboard was built around the following [decision log template](https://docs.google.com/spreadsheets/d/16vZwzK3OQmWWtRBtUAlk-ly435fvdj0BqOhLSesHkrY/edit?usp=sharing) 
 1. Find the 'Decision Log' Sheet and download it as CSV
 2. On the dashboard, navigate to the "Decision Log" section.
 3. Click on "Load CSV" and load the decision log file.
