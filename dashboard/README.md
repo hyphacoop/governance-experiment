@@ -1,6 +1,75 @@
 # Governance Dashboard
 
-The goal of this frontend interface is to provide a dashboard that brings together different governance processes.
+
+### API Integration Guide
+
+The following steps describe the purpose of each API, how they interact with the dashboard, and the process for setting up necessary accounts to enable these integrations. By connecting to these different data source, we can gather logs, results and provide input in a single interface for better collaboration and visualization:
+
+1. Google API
+
+- Purpose: Fetches decision log data from Google Sheets and authenticates users.
+- Interactions:
+    - GoogleAuth.svelte handles user login and token generation using OAuth2.
+
+    - utils.js processes data retrieved from Google Sheets.
+
+- Setup Instructions:
+
+    - Go to the Google Cloud Console.
+
+    - Create a new project.
+
+    - Enable the "Google Sheets API" and "Google Drive API."
+
+    - Navigate to "Credentials" and create an OAuth2 client ID.
+
+    - Set the redirect URI to match your application's domain (e.g., http://localhost:5173 during development).
+
+    - Copy the client ID, client secret, and API key into your .env file.
+
+2. GitHub API
+
+- Purpose: Integrates GitHub project boards for issue tracking and collaboration.
+
+- Interactions:
+
+    - GithubAuth.svelte authenticates users via OAuth2.
+
+    - GithubIssues.svelte fetches and displays GitHub issues.
+    
+    - For security reasons, GitHub OAuth uses a proxy server function to handle the GitHub secret token.
+- Setup Instructions:
+
+    - Go to the GitHub Developer Settings.
+
+    - Register a new OAuth application.
+
+    - Set the callback URL to your application's domain (e.g., http://localhost:5173 during development).
+
+    - Copy the client ID and client secret into your .env file.
+
+3. Earthstar
+
+- Purpose: Manages decentralized data storage and voting results.
+
+- Interactions:
+
+    - FetchVotes.svelte retrieves vote results from Earthstar.
+
+    - Voting results are stored securely and displayed using components like BarGraph.svelte and LineGraph.svelte.
+
+- Setup Instructions:
+
+    - Deploy an Earthstar server or use an existing one. To host your own voting events, you need to run your own Earthstar server. Templates are available to help you deploy an Earthstar server efficiently.
+
+    - Obtain your Earthstar address and secret key.
+
+    - Add these values to the .env file under VITE_SERVER_ADDRESS, VITE_ADDRESS, and VITE_SECRET.
+
+    - FetchVotes.svelte retrieves vote results from Earthstar.
+
+    - Voting results can be visualized with the BarGraph.svelte and LineGraph.svelte components.
+
 
 ## Table of Contents
 
