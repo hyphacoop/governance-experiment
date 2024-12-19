@@ -72,7 +72,7 @@ We used GitHub issues and project boards for tracking decisions, proposals, and 
 
 - **Dashboard:** [Governance Dashboard](./dashboard)
 - **Timeline:** [Timeline Visualization](./timeline)
-- **Earthstar Voting Tool:** [Earthstar-Based Voting Interface](https://github.com/tripledoublev/earthstar-voting-interface)
+- **Earthstar Voting Tool:** [Earthstar-Based Voting Interface](https://github.com/tripledoublev/voting-interface)
 
 ---
 
