@@ -1,8 +1,13 @@
 # Hypha's Timeline
 
-This project is a Svelte app that loads Hypha's timeline and provides an interactive way to explore events. It uses Tailwind CSS to style components and supports both dark and light themes.
+This project is part of Hypha's **Governance Experiment**, exploring decentralized decision-making, participatory processes, and visual storytelling. The timeline provides an interactive way to explore Hypha's history, displaying key events in a visually engaging format.
 
-The app is built with Vite and Svelte, making it highly exportable. This means it can be easily packaged as a web component and integrated anywhere on the web.
+The app is built with Vite and Svelte, styled using Tailwind CSS, and supports both dark and light themes. By default, the build settings are optimized for hosting on GitHub Pages, but the app can also be exported as a web component for integration into other web platforms.
+
+You can explore the timeline live on GitHub Pages:  
+- **Timeline:** [https://hyphacoop.github.io/governance-experiment/timeline](https://hyphacoop.github.io/governance-experiment/timeline)
+
+---
 
 ## Features
 
