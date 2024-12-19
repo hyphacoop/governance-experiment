@@ -165,6 +165,11 @@ To get started with the project, follow these steps:
 
 This dashboard is deployed on github pages. The deploy.sh script automatically builds both the dashboard and the timeline and deploys it to this repository's github page. 
 
+## Possible Usage without APIs
+
+It is possible to load data decision log manually as CSV. Below you will find these instructions. 
+
+
 ### Loading Decision Log
 
 1. Find the 'Decision Log' Sheet and download it as CSV
