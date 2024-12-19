@@ -51,6 +51,11 @@ body {
   min-height: 100vh;
 }
 
+@media (max-width: 887px) {
+  body {
+    place-items: center;
+  }
+}
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
