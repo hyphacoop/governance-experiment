@@ -47,18 +47,15 @@ To get started with the project, follow these steps:
     npm run dev
     ```
 
-## Deployment
-
-This dashboard is deployed on github pages. The deploy.sh script automatically builds both the dashboard and the timeline and deploys it to this repository's github page. 
-
+## Usage
 ## Possible Usage without APIs
 
-It is possible to load data decision log manually as CSV. Below you will find these instructions. 
-
-
+It is possible to load the decision log manually as CSV. Follow the instructions in the next section, Loading Decision Log.
 ### Loading Decision Log
-This dashboard was built around the following [decision log template](https://docs.google.com/spreadsheets/d/16vZwzK3OQmWWtRBtUAlk-ly435fvdj0BqOhLSesHkrY/edit?usp=sharing) 
-1. Find the 'Decision Log' Sheet and download it as CSV
+
+This dashboard was built around the following [decision log template](https://docs.google.com/spreadsheets/d/16vZwzK3OQmWWtRBtUAlk-ly435fvdj0BqOhLSesHkrY/edit?usp=sharing):
+
+1. Find the 'Decision Log' Sheet and download it as CSV.
 2. On the dashboard, navigate to the "Decision Log" section.
 3. Click on "Load CSV" and load the decision log file.
 
