@@ -131,15 +131,11 @@ The .env file is essential for connecting the dashboard to the required APIs. Yo
 - [Installation](#installation)
 - [Usage](#usage)
 
-## Project Overview
+## Dashboard Overview
 
-The Governance Dashboard is a Svelte-based application designed to facilitate collaborative decision-making and visualize the results. The project aims to:
-
-- Display our decision log.
+- Display a decision log.
+- Access a github project board and displays issues that require feedback
 - Provide insights into deliberation and voting workflows.
-- Test the viability of different tools in a small-scale setting.
-- Develop and document a series of governance workflows.
-- Contribute to the lore creation of our co-op by telling the story of what and why we are.
 
 ## Features
 
