@@ -15,7 +15,7 @@ This interface integrates multiple APIs to gather data from different sources in
 - [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
+- [Using the Dashboard](#usage)
 - [Deployment](#deployment)
 - [Possible Usage without APIs](#possible-usage-without-apis)
 - [API Integration Guide](#api-integration-guide)
