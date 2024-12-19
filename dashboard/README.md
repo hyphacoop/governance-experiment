@@ -8,16 +8,17 @@ This interface integrates multiple APIs to gather data from different sources in
 
 ## Table of Contents
 
-- [Project Overview](#project-overview)
+- [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-
-## Dashboard Overview
-
-- Display a decision log.
-- Access a github project board and displays issues that require feedback
-- Provide insights into deliberation and voting workflows.
+- [Deployment](#deployment)
+- [Possible Usage without APIs](#possible-usage-without-apis)
+- [API Integration Guide](#api-integration-guide)
+- [Environment Variables](#environment-variables)
+- [Component Details](#component-details)
+- [User and Developer Guide](#user-and-developer-guide)
+- [How it all works together](#how-it-all-works-together)
 
 ## Features
 
