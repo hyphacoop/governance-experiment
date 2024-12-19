@@ -75,3 +75,13 @@ If you want to export the timeline as a web component for integration into other
 
 3. The output will be in the dist folder, and the web component can be integrated into other projects using an <iframe> or <script> tag.
 
+### Contribution
+
+We welcome contributions to improve the timeline! To contribute:
+
+   - Fork the repository and create a feature branch.
+   - Submit a pull request with a clear description of your changes.
+
+---    
+
+This project is licensed under the GNU General Public License v3.0. See the `LICENSE` file for details.
