@@ -69,6 +69,8 @@ This dashboard is deployed on GitHub Pages. The [deploy.sh](http://_vscodeconten
 
 ## API Integration Guide
 
+- These integrations enable seamless data sharing, decentralized vote tracking, and real-time visualization of governance activities.
+
 ### Google API
 
 - **Purpose:** Fetches decision log data from Google Sheets and authenticates users.
