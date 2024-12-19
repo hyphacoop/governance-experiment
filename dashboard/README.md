@@ -198,3 +198,7 @@ If you encounter any bugs or have suggestions for improvements, please follow th
 7. **Follow Up**: If you have additional information or updates regarding the issue, please add comments to the issue thread. This helps maintainers track progress and gather more context.
 
 By following these guidelines, you help us address issues more efficiently and improve the overall quality of the project. Thank you for your contributions!
+
+---
+
+This project is licensed under the GNU General Public License v3.0. See the [LICENSE](../LICENSE) file for details.
