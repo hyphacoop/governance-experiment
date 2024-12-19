@@ -44,3 +44,15 @@ Through the experiment, we:
 
 ---
 
+## Voting Platforms
+
+### Ready-to-Use Voting Tools
+We used ADoodle and Onvote.app to test different voting platforms.
+
+### Constellate: Our Custom-Built Earthstar-Based Voting Interface
+For sensitive or anonymous votes, we developed [Constellate](https://github.com/tripledoublev/voting-interface), an Earthstar-based voting tool. This platform ensures confidentiality while enabling accurate vote tallying.
+
+### GitHub Project Boards
+We used GitHub issues and project boards for tracking decisions, proposals, and feedback during the experiment.
+
+---
