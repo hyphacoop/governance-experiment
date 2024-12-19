@@ -172,3 +172,23 @@ If you'd like to contribute to this project:
    - Fork the repository and create a new branch for your feature or bugfix.
    - Submit a pull request with a clear description of your changes.
 
+
+### Open Issue Guidelines
+
+If you encounter any bugs or have suggestions for improvements, please follow these guidelines to open an issue:
+
+1. **Search Existing Issues**: Before opening a new issue, please check if the issue has already been reported. This helps avoid duplicates and allows us to focus on existing issues.
+
+2. **Create a New Issue**: If you don't find an existing issue, create a new one. Click on the "New Issue" button in the Issues section of the repository.
+
+3. **Provide a Clear Title**: Use a descriptive title that clearly summarizes the issue or suggestion.
+
+4. **Describe the Issue**: Provide a detailed description of the issue. Include steps to reproduce the problem, expected behavior, and actual behavior. If applicable, include screenshots or code snippets to help illustrate the issue.
+
+5. **Label the Issue**: Use appropriate labels to categorize the issue (e.g., bug, enhancement, question). This helps maintainers prioritize and manage issues more effectively.
+
+6. **Include Environment Details**: Specify the environment in which the issue occurred, including operating system, browser, and any relevant configuration details.
+
+7. **Follow Up**: If you have additional information or updates regarding the issue, please add comments to the issue thread. This helps maintainers track progress and gather more context.
+
+By following these guidelines, you help us address issues more efficiently and improve the overall quality of the project. Thank you for your contributions!
