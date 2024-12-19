@@ -94,6 +94,28 @@ The .env file is essential for connecting the dashboard to the required APIs. Yo
 - Integration:
 
     - Each API provides specific functionality that enhances the overall governance process. For instance, Google Sheets enables easy data sharing, while Earthstar ensures decentralized and secure vote tracking.
+### User and Developer Guide
+
+- For Users
+
+    - Obtain access credentials for the required services (Google, GitHub).
+
+    - Follow the installation and setup steps to configure the dashboard.
+
+    - Authenticate with Google and GitHub when prompted during usage.
+
+    - View decision logs, voting results, and GitHub issues via the dashboard interface.
+
+-For Developers
+
+    - Ensure you have accounts set up for Google Cloud, GitHub, and Earthstar.
+
+    - Populate the .env file with your credentials.
+
+    - Use the development server (npm run dev) to test API integrations.
+
+    - Modify and extend components as needed for additional functionality.
+
 
 ## Table of Contents
 
