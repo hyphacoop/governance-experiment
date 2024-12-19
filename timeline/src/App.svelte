@@ -27,12 +27,12 @@
     loadTimeline();
   });
 </script>
-<ThemeSwitcher />
 
-<div class="flex flex-row min-[888px]:flex-col items-center justify-between max-w-full">
+
+<div class="content-container flex flex-row min-[888px]:flex-col items-center justify-between max-w-full">
   <div class="flex flex-col min-[888px]:flex-row items-center gap-1 min-[888px]:gap-4 timeline-container">
     {#each Object.entries(groupedTimeline) as [year, events]}
-      <div class="w-full flex flex-col items-start">
+      <div class="flex flex-col items-start">
 
 
         <!-- Events for the Year -->
@@ -52,14 +52,18 @@
       </div>
     {/each}
   </div>
-  {#if selectedEvent}
+    {#if selectedEvent}
     <div class="legend border p-4 mt-8 ml-8 min-[456px]:ml-16 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
       {selectedEvent.legend}
     </div>
   {/if}
-</div>
 
+</div>
+<ThemeSwitcher />
 <style>
+  .content-container {
+    margin-top: 25vh;
+  }
   .event {
     width: 3.5rem;
     height: 3.5rem;
@@ -74,10 +78,21 @@
     background-color: #9900FC;
     border-color: #9900FC;
   }
-  .active {
-    border-style: dashed;
-    border-width: 3px;
+  .event:focus,
+  .event:focus-visible {
+    outline: 2px dashed var(--border-color);
+    border: 2px solid transparent;
   }
+  .active {
+    border-width: 4px;
+    border-style: solid;
+    border-color: var(--border-color) !important;  
+  }
+ event.active:focus,
+.event.active:focus-visible {
+  outline: 3px dashed var(--border-color); 
+  border-color: var(--active-border-color);
+}
   .legend {
     border-width: 2px;
   }
@@ -94,6 +109,7 @@
   }
   .year-header {
       display:none;
+      font-family: 'Work Sans', sans-serif;
     }
   @media (min-width: 480px) {
     .year-header {
@@ -101,6 +117,9 @@
     }
   }  
   @media (max-width: 887px) {
+    .content-container {
+      margin-top: 0;
+    }
     .event::before {
       top: 102%;
       left: 50%;
@@ -114,7 +133,7 @@
     }
   }
 
-  .timeline-container > .w-full:last-of-type .yearly-events-container .event:last-of-type::before {
+  .timeline-container > .items-start:last-of-type .yearly-events-container .event:last-of-type::before {
   display: none;
 }
 
