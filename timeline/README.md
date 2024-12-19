@@ -11,10 +11,13 @@ You can explore the timeline live on GitHub Pages:
 
 ## Features
 
-- **Svelte + Vite**: Utilizes Svelte for a simple, reactive UI and Vite for fast development.
-- **Tailwind CSS**: Enables rapid styling with utility-first CSS.
-- **Dark and Light Themes**: Built-in theme toggling for accessibility and user preference.
-- **Exportability**: Designed to be converted into a web component for seamless integration across various platforms.
+- **Part of the Governance Experiment:** Visualizes key events identified during the governance experiment.
+- **Svelte + Vite:** Utilizes Svelte for a simple, reactive UI and Vite for fast development.
+- **Tailwind CSS:** Enables rapid styling with utility-first CSS.
+- **Dark and Light Themes:** Built-in theme toggling for accessibility and user preference.
+- **Exportability:** Can be built for GitHub Pages or as a standalone web component.
+
+---
 
 ## Setup
 
