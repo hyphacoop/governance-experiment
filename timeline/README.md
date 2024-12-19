@@ -43,3 +43,35 @@ To run this project locally, ensure you have Node.js installed and follow these 
    ```
 
 4. Open your browser and navigate to `http://localhost:5173` (or the URL provided in your terminal).
+
+## Building the App
+
+By default, the build configuration is optimized for GitHub Pages. To create a production build for hosting on GitHub Pages, use:
+   ```bash
+   npm run build
+   ```
+The built files will be available in the dist folder and can be deployed to GitHub Pages or any other web server.
+
+### Building as a Web Component
+
+If you want to export the timeline as a web component for integration into other platforms, you will need to adjust the `vite.config.js` file to enable web component mode. Follow these steps:
+
+1. Open vite.config.js and modify the build.rollupOptions to output as a web component:
+   ```
+   export default {
+   build: {
+      rollupOptions: {
+         output: {
+         format: 'es',
+         },
+      },
+   },
+   };
+   ```
+2. Run the build command:
+   ```bash
+   npm run build
+   ```
+
+3. The output will be in the dist folder, and the web component can be integrated into other projects using an <iframe> or <script> tag.
+
