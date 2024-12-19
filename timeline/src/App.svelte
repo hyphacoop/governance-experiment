@@ -53,8 +53,15 @@
     {/each}
   </div>
     {#if selectedEvent}
-    <div class="legend border p-4 mt-8 ml-8 min-[456px]:ml-16 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
-      {selectedEvent.legend}
+    <div class="legend flex flex-col items-end border p-4 mt-8 ml-8 min-[456px]:ml-16 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
+      <span class='w-full'>
+        {selectedEvent.legend}
+      </span>
+      {#if selectedEvent.link}
+        <a href="{selectedEvent.link}" target="_blank" rel="noopener noreferrer" class="p-2 hover:bg-purple rounded w-fit">
+          🔗
+        </a>
+      {/if}
     </div>
   {/if}
 
