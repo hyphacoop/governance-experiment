@@ -7,6 +7,10 @@ The project comprises two main components:
 - [**Dashboard**](./dashboard): A frontend interface for collaborative decision-making, visualizing proposals, and vote results.
 - [**Timeline**](./timeline): A visual representation of key moments in Hypha's history, co-created through participatory processes.
 
+You can see these two components currently hosted on GitHub Pages:  
+- **Dashboard**: [https://hyphacoop.github.io/governance-experiment/](https://hyphacoop.github.io/governance-experiment/)  
+- **Timeline**: [https://hyphacoop.github.io/governance-experiment/timeline](https://hyphacoop.github.io/governance-experiment/timeline)
+
 ---
 
 ## Table of Contents
