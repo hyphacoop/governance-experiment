@@ -175,3 +175,21 @@ It is possible to load data decision log manually as CSV. Below you will find th
 1. Find the 'Decision Log' Sheet and download it as CSV
 2. On the dashboard, navigate to the "Decision Log" section.
 3. Click on "Load CSV" and load the decision log file.
+
+### Component Details
+
+- App.svelte: The main application component that initializes and renders the dashboard.
+
+- GoogleAuth.svelte: Handles Google authentication.
+
+- GithubAuth.svelte: Handles GitHub authentication.
+
+- DecisionLog.svelte: Displays the decision log data.
+
+- GithubIssues.svelte: Displays GitHub issues.
+
+- BarGraph.svelte: Visualizes vote results in a bar graph.
+
+- LineGraph.svelte: Visualizes vote results in a line graph.
+
+- FetchVotes.svelte: Fetches vote results from Earthstar.
