@@ -57,7 +57,7 @@
           {/each}
         </div>
         <!-- Year Header -->
-        <div class="year-header pl-1 ml-2 mb-1">{year}</div>
+        <div class="year-header ml-2 mb-1">{year}</div>
       </div>
     {/each}
   </div>
