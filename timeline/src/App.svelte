@@ -78,7 +78,8 @@
 <ThemeSwitcher />
 <style>
   .content-container {
-    margin-top: 25vh;
+    margin-top: 15vh;
+  }
   }
   .event {
     width: 3.5rem;
