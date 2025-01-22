@@ -13,10 +13,12 @@
   
   <button on:click={toggleTheme} class='rounded-full'>
     {#if currentTheme === 'light'}
-        ☀️
-    {:else}
-        🌙
-    {/if}
+    <!-- Sun Icon -->
+    <i class="fas fa-sun"></i>
+  {:else}
+    <!-- Moon Icon -->
+    <i class="fas fa-moon"></i>
+  {/if}
   </button>
   
   <style>
@@ -25,12 +27,12 @@
       bottom: 1rem;
       right: 1rem;
       cursor: pointer;
+      color: var(--emoji-color);
       border: 2px solid var(--border-color);
       background-color: var(--background-color);
     }
   
     button:hover {
-        background-color: #9900FC;
-        border-color: #9900FC;
+        border-color: var(--emoji-color);
     }
   </style>

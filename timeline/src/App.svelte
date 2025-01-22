@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import "@fortawesome/fontawesome-free/css/all.css";
 
   import ThemeSwitcher from './lib/ThemeSwitcher.svelte';
 
@@ -52,7 +53,8 @@
               class="event flex justify-center items-center relative z-10 flex-shrink-0 text-center px-4 py-2 border rounded-full hover:bg-purple {selectedEvent === event ? 'active' : ''}"
               on:click={() => selectEvent(event)}
             >
-              <span>{event.id}</span>
+              <i class={`fas ${event.id} emoji`}></i>
+
         </button>
           {/each}
         </div>
@@ -80,6 +82,8 @@
   .content-container {
     margin-top: 15vh;
   }
+  .emoji {
+    color: var(--emoji-color);
   }
   .event {
     width: 3.5rem;
@@ -92,8 +96,7 @@
     border-radius: 50%;
   }
   .event:hover {
-    background-color: #9900FC;
-    border-color: #9900FC;
+    border-color: var(--emoji-color);
   }
   .event:focus,
   .event:focus-visible {
