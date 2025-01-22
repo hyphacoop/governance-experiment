@@ -85,7 +85,7 @@
     width: 3.5rem;
     height: 3.5rem;
     border-color: var(--border-color);
-    color: var(--text-color);
+    color: var(--color);
     border-width: 2px;
     background-color: var(--background-color);
     transition: all 0.2s ease-in-out;
@@ -112,6 +112,9 @@
 }
   .legend {
     border-width: 2px;
+    color: var(--color);
+    border-color: var(--border-color);
+    background-color: var(--background-color);
   }
   .event::before {
     content: '';
@@ -127,6 +130,7 @@
   .year-header {
       display:none;
       font-family: 'Work Sans', sans-serif;
+      color: var(--color);
     }
   @media (min-width: 480px) {
     .year-header {
