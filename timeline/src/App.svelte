@@ -17,7 +17,10 @@
     }, {});
   }
 
-  let selectedEvent = { legend: "This timeline represents the official lore of Hypha Worker Cooperative. It contains significant events that have been collectively agreed upon by the members, showcasing our journey, milestones, and key decisions in our cooperative's history." };
+  // Static legend for the timeline
+  const staticLegend = "This timeline represents the official lore of Hypha Worker Co-operative. It contains significant events that have been collectively agreed upon by the members, showcasing our journey, milestones, and key decisions in our cooperative's history.";
+  
+  let selectedEvent = null;
   
   function selectEvent(event) {
     selectedEvent = event;
@@ -30,6 +33,12 @@
 
 
 <div class="content-container flex flex-row min-[888px]:flex-col items-center justify-between max-w-full">
+    <!-- Static Legend -->
+    <div class="legend flex flex-col items-end border p-4 mb-12 ml-8 min-[456px]:ml-16 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
+      <span class='w-full'>
+        {staticLegend}
+      </span>
+    </div>
   <div class="flex flex-col min-[888px]:flex-row items-center gap-1 min-[888px]:gap-4 timeline-container">
     {#each Object.entries(groupedTimeline) as [year, events]}
       <div class="flex flex-col items-start">
