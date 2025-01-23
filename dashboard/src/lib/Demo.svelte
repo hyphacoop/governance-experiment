@@ -36,7 +36,7 @@
             date: "2022-Apr-9",
             description: "Add a pet policy and roobot to the handbook",
             deciding_groups: "Operations",
-            resolution: "<a href='https://github.com/hyphacoop/handbook/commit/84d7577a48631e1a7765ec36cb1dbca42062c3b4'>Committed 🔗</a>"
+            resolution: "<a target='_blank' href='https://github.com/hyphacoop/handbook/commit/84d7577a48631e1a7765ec36cb1dbca42062c3b4'>Committed 🔗</a>"
         }
     ];
   
