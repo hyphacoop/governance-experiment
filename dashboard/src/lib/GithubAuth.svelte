@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import { githubIssues } from "../stores"; 
+    import { demoMode, githubIssues } from "../stores"; 
     import { githubToken, logOutGithub, revokeGithubToken } from "../stores/auth";
     import GithubIssues from "./GithubIssues.svelte";
 
@@ -19,6 +19,9 @@
 
   
     function handleGitHubSignIn() {
+      // Disable demo mode
+      demoMode.set(false); 
+
       // Redirect to GitHub OAuth
       window.location.href = authUrl;
     }
@@ -121,7 +124,7 @@ async function handleLogout() {
   
   
   <div class={topDivClass}>
-    <h2 class="text-left">Provide feedback</h2>
+    <h2 class="text-left mt-6 ml-12">Provide feedback</h2>
     {#if loggedIn}
       {#if $githubIssues.length > 0}
         <GithubIssues />
@@ -132,7 +135,7 @@ async function handleLogout() {
         Sign out
       </button>
     {:else}
-      <button class="signin" on:click={handleGitHubSignIn}>Sign in with GitHub</button>
+      <button class="signin ml-12" on:click={handleGitHubSignIn}>Sign in with GitHub</button>
     {/if}
   </div>
   <style>
