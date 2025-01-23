@@ -8,9 +8,10 @@
   import BarGraph from "./lib/BarGraph.svelte";
   import ProposalsTable from "./lib/ProposalsTable.svelte";
 
+  import Demo from "./lib/Demo.svelte";
   import { googleToken, validateGoogleToken } from "./stores/auth";
   import { fetchDecisionLog } from "./stores/utils";
-  import { isDecisionLogLoaded, voteDataLoaded, loadDecisionLogFromApi, googleSpreadsheetIDs } from "./stores";
+  import { demoMode, isDecisionLogLoaded, voteDataLoaded, loadDecisionLogFromApi, googleSpreadsheetIDs, githubIssues } from "./stores";
     import GithubIssues from "./lib/GithubIssues.svelte";
 
   // Track Github connection state
@@ -58,19 +59,28 @@
     }
 
   onMount(() => {
+    githubIssues.set([]); // Clear GitHub issues
     // Validate and load decision log data
     validateAndLoadDecisionLog();
+    // Reset demo mode
+    $demoMode = false;
   });
 </script>
 
 <main>
   <h1>Governance Dashboard</h1>
-  <!-- D  isplay or Load decision log data -->
-   {#if githubConnected}
-    <GithubIssues />
-   {:else}
-    <GithubAuth />
-  {/if} 
+  {#if !$isDecisionLogLoaded }
+    <Demo />
+  {/if}
+
+     <!-- Show GitHub issues only if connected or in demo mode -->
+    {#if $demoMode}
+      <GithubIssues />
+    {:else if githubConnected}
+      <GithubIssues />
+    {:else}
+      <GithubAuth />
+    {/if}
   {#if decisionLogLoadState}
     <DecisionLog />
     <!-- Display Vote Data Graphs and Table if vote data is loaded -->
@@ -89,7 +99,7 @@
 <style>
   h1 {
     text-align: left;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
   }
 </style>
