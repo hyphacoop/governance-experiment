@@ -13,6 +13,8 @@ const storedGithubIssues = JSON.parse(sessionStorage.getItem("githubIssues") || 
 
 export const githubIssues = writable(storedGithubIssues);
 
+export const demoMode = writable(false);
+
 // Subscribe to the store to persist changes to sessionStorage
 githubIssues.subscribe((value) => {
   sessionStorage.setItem("githubIssues", JSON.stringify(value));
@@ -58,6 +60,7 @@ isDecisionLogLoaded.subscribe((loaded) => {
 
 // Function to clear the decision log
 export const clearDecisionLog = () => {
+  console.log("Clearing decision log data...");
   decisionLogData.set([]);
   isDecisionLogLoaded.set(false);
 };
