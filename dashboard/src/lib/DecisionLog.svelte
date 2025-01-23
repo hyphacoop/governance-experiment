@@ -1,6 +1,6 @@
 <script>
     import FetchVotes from './FetchVotes.svelte';
-    import { decisionLogData, clearDecisionLog, isDecisionLogLoaded } from '../stores';
+    import { decisionLogData, clearDecisionLog, isDecisionLogLoaded, demoMode } from '../stores';
     import { revokeGoogleToken } from '../stores/auth';
     let decisions = [];
     let isCsvLoaded;
@@ -51,7 +51,7 @@
               <tr>
                   <td class="font-semibold px-2 py-1">{field.label}</td>
                   <td class={`px-2 py-1 ${field.class || ''}`}>
-                      {decision[field.key]}
+                      {@html decision[field.key]}
                   </td>
               </tr>
               {/if}
@@ -71,20 +71,24 @@
       </details>
     {/each}
     </div>
-    {#if isCsvLoaded}
+
+    {#if demoMode}
     <div class='flex flex-row'>
-    <button on:click={handleClearToken} class="text-white px-4 py-2 rounded mt-4 ml-2">
-      Sign out
-    </button>
+      <button on:click={handleClearData} class="text-white px-4 py-2 rounded mt-4 ml-2">
+        Clear log
+      </button>
     </div>
-  {/if}
+    {/if}
+  
   </div>
 
   <style>
     summary {
       cursor: pointer;
     }
-
+    summary:hover {
+      text-decoration: underline;
+    }
     details {
       margin-right: 1rem;
     }
