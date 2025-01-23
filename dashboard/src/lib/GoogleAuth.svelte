@@ -1,13 +1,14 @@
 <script>
   import { googleToken } from "../stores/auth";
   import { fetchDecisionLog } from "../stores/utils";
-  import { loadDecisionLogFromApi, isDecisionLogLoaded, googleSpreadsheetIDs } from "../stores";
+  import { demoMode, loadDecisionLogFromApi, isDecisionLogLoaded, googleSpreadsheetIDs } from "../stores";
 
   let isLogLoaded;
   let accessToken = null;
   $: accessToken = $googleToken;
 
   function handleSignInClick() {
+    demoMode.set(false); // Disable demo mode
     const tokenClient = window.google.accounts.oauth2.initTokenClient({
       client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
       scope: "https://www.googleapis.com/auth/spreadsheets.readonly",
