@@ -15,7 +15,7 @@
   <h2>
     Proposals
   </h2>
-  <table class="border-spacing-0 rounded-tl-lg my-4 table-auto">
+  <table class="border-spacing-0 rounded-tl-lg my-4 table-auto w-full">
     <thead>
       <tr>
         <th class="px-4 py-2 text-left rounded-tl-lg rounded-bl-lg thead w-1/6">Label</th>
