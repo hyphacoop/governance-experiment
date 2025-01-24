@@ -18,7 +18,7 @@
       <label class='flex flex-col'>
         <p class="text-left purple mr-2">
           Or load CSV from 
-          <a class="purple underline" href="ttps://docs.google.com/spreadsheets/d/16vZwzK3OQmWWtRBtUAlk-ly435fvdj0BqOhLSesHkrY/edit?usp=sharing">
+          <a class="purple underline" href="https://docs.google.com/spreadsheets/d/16vZwzK3OQmWWtRBtUAlk-ly435fvdj0BqOhLSesHkrY/edit?usp=sharing">
             template
           </a>
         </p>
