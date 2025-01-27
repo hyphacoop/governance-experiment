@@ -7,6 +7,7 @@
   import TotalVoters from "./lib/TotalVoters.svelte";
   import BarGraph from "./lib/BarGraph.svelte";
   import ProposalsTable from "./lib/ProposalsTable.svelte";
+  import ExportData from "./lib/ExportData.svelte";
 
   import Demo from "./lib/Demo.svelte";
   import { googleToken, validateGoogleToken } from "./stores/auth";
@@ -58,6 +59,10 @@
         }
     }
 
+  // Check if all necessary data is loaded
+  $: isDataReady = isVoteDataLoaded && decisionLogLoadState && get(githubIssues).length > 0;
+
+
   onMount(() => {
     githubIssues.set([]); // Clear GitHub issues
     // Validate and load decision log data
@@ -94,6 +99,11 @@
   </div>
   <ProposalsTable />
 {/if}
+
+  <!-- Show ExportData only when all necessary data is loaded -->
+  {#if isDataReady}
+    <ExportData />
+  {/if}
 </main>
 
 <style>

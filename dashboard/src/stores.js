@@ -1,7 +1,7 @@
 import * as Earthstar from "earthstar";
 import { ReplicaDriverWeb } from "earthstar/browser";
 
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import Papa from 'papaparse';
 
 // Retrieve decision log from sessionStorage, or default to an empty array
@@ -283,3 +283,28 @@ export const replica = new Earthstar.Replica({
 });
 
 export default settings;
+
+export const exportData = () => {
+  // Access the necessary data from stores
+  const allData = {
+    proposals: get(proposalsData),
+    githubIssues: get(githubIssues),
+    barChart: get(barChartData),
+    lineGraph: get(lineGraphData),
+  };
+
+  // Convert the data to a JSON string
+  const jsonString = JSON.stringify(allData, null, 2);
+
+  // Create a blob and trigger a download
+  const blob = new Blob([jsonString], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "exported_data.json"; // You can customize the file name and extension
+  a.click();
+
+  // Revoke the object URL to free up memory
+  URL.revokeObjectURL(url);
+};
