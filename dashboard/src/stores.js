@@ -285,13 +285,74 @@ export const replica = new Earthstar.Replica({
 export default settings;
 
 export const exportData = () => {
-  // Access the necessary data from stores
+  const transformedProposals = get(proposalsData).map((proposal, index) => ({
+    id: `proposal-${index + 1}`, // Assign unique IDs
+    title: proposal.title || "",
+    description: proposal.proposal || "",
+    vote: {
+      type: "single-choice", // Default type, modify as needed
+      options: ["Yes", "No", "Abstain"], // Customize based on context
+      result: proposal.vote || ""
+    },
+    vote_count: proposal.count || 0
+  }));
+
+  // Transform GitHub issues to match the new schema
+  const transformedGithubIssues = get(githubIssues).map((issue, index) => ({
+    id: `issue-${index + 1}`, // Assign unique IDs
+    url: issue.content?.url || "",
+    title: issue.content?.title || "",
+    assignee: "", // Placeholder if missing
+    created_by: "", // Placeholder if missing
+    created_at: "", // Placeholder for issue creation date
+    updated_at: "", // Placeholder for last update date
+    labels: [], // Placeholder for issue labels
+    org: "", // Extract org if needed
+    repo: "", // Extract repo if needed
+    status: "", // Placeholder for issue status
+    comments_count: 0 // Placeholder for comment count
+  }));
+
+  // Transform barChart and lineGraph to multi-series format
+  const transformedBarChart = {
+    series: [
+      {
+        name: "Votes",
+        labels: get(barChartData).labels || [],
+        values: get(barChartData).values || []
+      }
+    ]
+  };
+
+  const transformedLineGraph = {
+    series: [
+      {
+        name: "Trends",
+        labels: get(lineGraphData).labels || [],
+        values: get(lineGraphData).values || []
+      }
+    ]
+  };
+
+  // Transform decisionLog to match the new schema
+  const transformedDecisionLog = get(decisionLogData).map((log, index) => ({
+    id: `decision-${index + 1}`, // Assign unique IDs
+    date: log.date || "",
+    short_title: log.short_title || "",
+    description: log.description || "",
+    deciding_group: log.deciding_groups || "",
+    resolution: log.resolution || "",
+    supplemental_materials: [], // Placeholder for links/files
+    other_notes: "" // Placeholder for additional notes
+  }));
+
+  // Construct the final export structure
   const allData = {
-    proposals: get(proposalsData),
-    githubIssues: get(githubIssues),
-    barChart: get(barChartData),
-    lineGraph: get(lineGraphData),
-    decisionLog: get(decisionLogData) 
+    proposals: transformedProposals,
+    githubIssues: transformedGithubIssues,
+    barChart: transformedBarChart,
+    lineGraph: transformedLineGraph,
+    decisionLog: transformedDecisionLog
   };
 
   // Convert the data to a JSON string
@@ -303,9 +364,10 @@ export const exportData = () => {
 
   const a = document.createElement("a");
   a.href = url;
-  a.download = "exported_data.json"; // You can customize the file name and extension
+  a.download = "exported_data.json"; // We could customize the filename. Maybe add a timestamp?
   a.click();
 
   // Revoke the object URL to free up memory
   URL.revokeObjectURL(url);
 };
+
