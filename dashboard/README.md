@@ -4,7 +4,7 @@
 
 This dashboard is part of Hypha's **Governance Experiment**, a collaborative project exploring decentralized decision-making and visual storytelling.
 You can explore the dashboard live on GitHub Pages:  
-- **Dashboard:** [https://hyphacoop.github.io/governance-experiment/](https://hyphacoop.github.io/governance-experiment/)
+- **Access the dashboard online:** [https://hyphacoop.github.io/governance-experiment/](https://hyphacoop.github.io/governance-experiment/)
 
 This dashboard is a static frontend application designed to facilitate collaborative decision-making and visualize the results. The project integrates multiple APIs (Google, GitHub, and an Earthstar server) to provide a seamless experience for users. This document covers installation, configuration, component details, and API interactions to help users and developers get started.
 
