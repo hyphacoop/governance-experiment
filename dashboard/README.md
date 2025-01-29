@@ -21,6 +21,7 @@ This interface integrates multiple APIs to gather data from different sources in
 - [API Integration Guide](#api-integration-guide)
 - [Environment Variables](#environment-variables)
 - [Component Details](#component-details)
+- [Export Data Format](#export-data-format)
 - [User and Developer Guide](#user-and-developer-guide)
 - [How it all works together](#how-it-all-works-together)
 
@@ -136,6 +137,71 @@ VITE_SECRET=your-earthstar-secret
 - `LineGraph.svelte`: Visualizes vote results in a line graph.
 
 - `FetchVotes.svelte`: Fetches vote results from Earthstar.
+
+## Export Data Format
+
+The dashboard allows users to export gathered data into a structured flat file format. This exported data includes governance proposals, GitHub issues, decision logs, and vote results.
+
+### **Schema Structure**
+Below is the JSON schema structure used for exports. The data is exported as a `.json` file.
+
+```json
+{
+  "proposals": [
+    {
+      "vote": "",
+      "proposal": "",
+      "title": "",
+      "count": 0
+    }
+  ],
+  "githubIssues": [
+    {
+      "url": "",
+      "title": "",
+      "assignee": "",
+      "created_by": "",
+      "labels": [],
+      "org": "",
+      "repo": "",
+      "status": ""
+    }
+  ],
+  "barChart": {
+    "labels": [],
+    "values": []
+  },
+  "lineGraph": {
+    "labels": [],
+    "values": []
+  },
+  "decisionLog": [
+    {
+      "date": "",
+      "short_title": "",
+      "description": "",
+      "deciding_group": "",
+      "resolution": "",
+      "supplemental_materials": "",
+      "other_notes": ""
+    }
+  ]
+}
+```
+### Field Descriptions
+
+| Field               | Description |
+|---------------------|------------|
+| `proposals`        | List of proposals with votes, titles, and counts. |
+| `githubIssues`     | Issues fetched from GitHub, including title, labels, and status. |
+| `barChart`         | Data for the bar chart visualization (labels and values). |
+| `lineGraph`        | Data for the line graph visualization (labels and values). |
+| `decisionLog`      | List of decisions made, including date, description, resolution, and supplemental materials. |
+
+### How to Use
+
+- When using the Export Data button in the dashboard, a JSON file with this structure will be generated.
+- The exported file can be used for data analysis, record-keeping, or integration with other governance tools.
 
 ## User and Developer Guide
 
