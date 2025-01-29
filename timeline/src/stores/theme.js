@@ -1,6 +1,11 @@
 import { writable } from 'svelte/store';
 
-const storedTheme = localStorage.getItem('theme') || 'light';
+// Get theme from URL or localStorage
+const urlParams = new URLSearchParams(window.location.search);
+const urlTheme = urlParams.get('theme'); // Get `theme` param from URL
+
+const storedTheme = urlTheme || localStorage.getItem('theme') || 'light';
+
 export const theme = writable(storedTheme);
 
 theme.subscribe(value => {

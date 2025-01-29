@@ -3,6 +3,7 @@
   import "@fortawesome/fontawesome-free/css/all.css";
 
   import ThemeSwitcher from './lib/ThemeSwitcher.svelte';
+  import { theme } from "./stores/theme";
 
   let groupedTimeline = {};
 
@@ -37,6 +38,7 @@
   }
 
   onMount(() => {
+    document.documentElement.setAttribute('data-theme', $theme);
     loadTimeline();
     window.addEventListener("resize", handleResize);
     handleResize();
