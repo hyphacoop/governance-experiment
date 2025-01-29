@@ -10,7 +10,7 @@
         },
         {
             content: {
-                url: "https://github.com/hyphacoop/handbook/issues/331",
+                url: "https://github.com/hyphacoop/governance-experiment/issues/15",
                 title: "Should we make some NFTs?"
             }
         }
