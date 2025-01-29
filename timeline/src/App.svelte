@@ -52,7 +52,7 @@
   
   <!-- Static Legend -->
      
-    <div class="legend flex flex-col items-end border p-4 mb-12 min-[1024px]:ml-16 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
+    <div class="legend flex flex-col items-end border p-4 mb-12 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
       <span class='w-full'>
         {staticLegend}
       </span>
@@ -82,7 +82,7 @@
     {/each}
   </div>
     {#if selectedEvent}
-    <div class="legend flex flex-col items-end border p-4 mt-8 ml-8 min-[1024px]:ml-16 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
+    <div class="legend flex flex-col items-end border p-4 mt-8 ml-8 min-[555px]:ml-16 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
       <span class='w-full'>
         {selectedEvent.legend}
       </span>
