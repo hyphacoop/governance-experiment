@@ -291,6 +291,7 @@ export const exportData = () => {
     githubIssues: get(githubIssues),
     barChart: get(barChartData),
     lineGraph: get(lineGraphData),
+    decisionLog: get(decisionLogData) 
   };
 
   // Convert the data to a JSON string
