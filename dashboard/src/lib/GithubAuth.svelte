@@ -124,8 +124,10 @@ async function handleLogout() {
   
   
   <div class={topDivClass}>
+    {#if !loggedIn}
     <h2 class="text-left mt-6 ml-12">Provide feedback</h2>
-    {#if loggedIn}
+    <button class="signin ml-12" on:click={handleGitHubSignIn}>Sign in with GitHub</button>
+    {:else}
       {#if $githubIssues.length > 0}
         <GithubIssues />
       {:else}
@@ -134,8 +136,6 @@ async function handleLogout() {
       <button on:click={handleLogout} class="text-white px-4 py-2 rounded mt-4 ml-2">
         Sign out
       </button>
-    {:else}
-      <button class="signin ml-12" on:click={handleGitHubSignIn}>Sign in with GitHub</button>
     {/if}
   </div>
   <style>
