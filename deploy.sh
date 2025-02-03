@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# This script deploys both the dashboard and the timeline apps to github pages.
+# This script deploys both the dashboard and the timeline to github pages.
 #
 set -e  # Exit immediately on error
 
