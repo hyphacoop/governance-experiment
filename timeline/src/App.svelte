@@ -3,6 +3,7 @@
   import "@fortawesome/fontawesome-free/css/all.css";
 
   import ThemeSwitcher from './lib/ThemeSwitcher.svelte';
+  import TimelinePrint from './lib/TimelinePrint.svelte';
   import { theme } from "./stores/theme";
 
   let groupedTimeline = {};
@@ -37,65 +38,98 @@
     selectedEvent = event;
   }
 
+  let showPrintView = false;
+
   onMount(() => {
     document.documentElement.setAttribute('data-theme', $theme);
     loadTimeline();
     window.addEventListener("resize", handleResize);
     handleResize();
+
+    // Check URL parameters for print view
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('print') === 'true') {
+      showPrintView = true;
+    }
+
     return () => window.removeEventListener("resize", handleResize);
   });
+
+  function togglePrintView() {
+    showPrintView = !showPrintView;
+    
+    // Update URL when toggling - fixed to use href instead of the whole location object
+    const url = new URL(window.location.href);
+    if (showPrintView) {
+      url.searchParams.set('print', 'true');
+    } else {
+      url.searchParams.delete('print');
+    }
+    window.history.pushState({}, '', url);
+  }
 </script>
 
+<!-- Print View Toggle Button -->
+<button 
+  class="print-toggle"
+  on:click={togglePrintView}>
+  {showPrintView ? 'Interactive View' : 'Print View'}
+</button>
 
-<div class="content-container flex flex-row min-[888px]:flex-col items-center justify-between max-w-full">
-  {#if showStaticLegend}
-  
-  <!-- Static Legend -->
-     
-    <div class="legend flex flex-col items-end border p-4 mb-12 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
-      <span class='w-full'>
-        {staticLegend}
-      </span>
-    </div>
-  {/if}
-  <div class="flex flex-col min-[888px]:flex-row items-center gap-1 min-[888px]:gap-4 timeline-container">
-    {#each Object.entries(groupedTimeline) as [year, events]}
-      <div class="flex flex-col items-start">
-
-
-        <!-- Events for the Year -->
-        <div class="flex flex-col min-[888px]:flex-row gap-1 min-[888px]:gap-4 yearly-events-container">
-
-          {#each events as event}
-            <button 
-              class="event flex justify-center items-center relative z-10 flex-shrink-0 text-center px-4 py-2 border rounded-full hover:bg-purple {selectedEvent === event ? 'active' : ''}"
-              on:click={() => selectEvent(event)}
-            >
-              <i class={`fas ${event.id} emoji`}></i>
-
-        </button>
-          {/each}
-        </div>
-        <!-- Year Header -->
-        <div class="year-header ml-2 mb-1">{year}</div>
+{#if showPrintView}
+  <TimelinePrint {groupedTimeline} {staticLegend} />
+{:else}
+  <div class="content-container flex flex-row min-[888px]:flex-col items-center justify-between max-w-full">
+    {#if showStaticLegend}
+    
+    <!-- Static Legend -->
+       
+      <div class="legend flex flex-col items-end border p-4 mb-12 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
+        <span class='w-full'>
+          {staticLegend}
+        </span>
       </div>
-    {/each}
-  </div>
-    {#if selectedEvent}
-    <div class="legend flex flex-col items-end border p-4 mt-8 ml-8 min-[555px]:ml-16 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
-      <span class='w-full'>
-        {selectedEvent.legend}
-      </span>
-      {#if selectedEvent.link}
-        <a href="{selectedEvent.link}" target="_blank" rel="noopener noreferrer" class="p-2 hover:bg-purple rounded w-fit">
-          🔗
-        </a>
-      {/if}
-    </div>
-  {/if}
+    {/if}
+    <div class="flex flex-col min-[888px]:flex-row items-center gap-1 min-[888px]:gap-4 timeline-container">
+      {#each Object.entries(groupedTimeline) as [year, events]}
+        <div class="flex flex-col items-start">
 
-</div>
-<ThemeSwitcher />
+
+          <!-- Events for the Year -->
+          <div class="flex flex-col min-[888px]:flex-row gap-1 min-[888px]:gap-4 yearly-events-container">
+
+            {#each events as event}
+              <button 
+                class="event flex justify-center items-center relative z-10 flex-shrink-0 text-center px-4 py-2 border rounded-full hover:bg-purple {selectedEvent === event ? 'active' : ''}"
+                on:click={() => selectEvent(event)}
+              >
+                <i class={`fas ${event.id} emoji`}></i>
+
+          </button>
+            {/each}
+          </div>
+          <!-- Year Header -->
+          <div class="year-header ml-2 mb-1">{year}</div>
+        </div>
+      {/each}
+    </div>
+      {#if selectedEvent}
+      <div class="legend flex flex-col items-end border p-4 mt-8 ml-8 min-[555px]:ml-16 min-[888px]:ml-0 rounded w-full max-w-60 min-[888px]:max-w-md text-center">
+        <span class='w-full'>
+          {selectedEvent.legend}
+        </span>
+        {#if selectedEvent.link}
+          <a href="{selectedEvent.link}" target="_blank" rel="noopener noreferrer" class="p-2 hover:bg-purple rounded w-fit">
+            🔗
+          </a>
+        {/if}
+      </div>
+    {/if}
+
+  </div>
+  <ThemeSwitcher />
+{/if}
+
 <style>
   .content-container {
     margin-top: 15vh;
@@ -179,4 +213,25 @@
   display: none;
 }
 
+  .print-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+    background-color: var(--background-color);
+    border: 2px solid var(--border-color);
+    color: var(--color);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+  }
+  
+  .print-toggle:hover {
+    border-color: var(--emoji-color);
+  }
+  
+  @media print {
+    .print-toggle {
+      display: none;
+    }
+  }
 </style>
